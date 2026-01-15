@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxcpwm8np17a5"]
+
+[ext_resource type="Script" uid="uid://b1qxtvocxr64v" path="res://weapons/gun.gd" id="1_es75o"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_awg1m"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.7
+
+[node name="Gun" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_awg1m")
+script = ExtResource("1_es75o")
