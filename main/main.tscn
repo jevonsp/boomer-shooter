@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccm6v0lbtkr0p"]
+[gd_scene load_steps=9 format=3 uid="uid://ccm6v0lbtkr0p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyec73hvubwn" path="res://player/player.tscn" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://cf47jb4ar4xaj" path="res://main/main.gd" id="1_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://cw6w3voc584ml" path="res://enemies/enemy.tscn" id="2_pjrb6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwkvk"]
 
@@ -19,6 +21,7 @@ size = Vector3(20, 0.1, 20)
 size = Vector3(20, 0.1, 20)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_xwkvk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_53q0u")
@@ -36,4 +39,7 @@ mesh = SubResource("BoxMesh_53q0u")
 shape = SubResource("BoxShape3D_53q0u")
 
 [node name="Player" parent="." instance=ExtResource("1_53q0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88477254, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111600876, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("2_pjrb6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.393941)

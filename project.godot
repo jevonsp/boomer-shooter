@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputManager="*res://player/InputManager.gd"
+PlayerManager="*res://player/PlayerManager.gd"

@@ -1,13 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxcpwm8np17a5"]
+[gd_scene load_steps=4 format=3 uid="uid://dxcpwm8np17a5"]
 
 [ext_resource type="Script" uid="uid://b1qxtvocxr64v" path="res://weapons/gun.gd" id="1_es75o"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_awg1m"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 0.7
+[sub_resource type="BoxMesh" id="BoxMesh_es75o"]
+size = Vector3(1, 0.25, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tsf64"]
+size = Vector3(0.25, 0.4, 0.25)
 
 [node name="Gun" type="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_awg1m")
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_es75o")
 script = ExtResource("1_es75o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36240518, -0.215442, 1.5841234e-08)
+mesh = SubResource("BoxMesh_tsf64")
+
+[node name="Point" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5484638, 0.27978474, 0.2750837)

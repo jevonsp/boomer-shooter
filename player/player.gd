@@ -10,6 +10,7 @@ var health: int = 5
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 
 func _ready() -> void:
+	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _unhandled_input(_event: InputEvent) -> void:
