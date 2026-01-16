@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbv0pkccbifvn"]
+
+[ext_resource type="Script" uid="uid://mcpsfv08kp4v" path="res://weapons/weapon.gd" id="1_rma5x"]
+[ext_resource type="PackedScene" uid="uid://cab1qqgabohmx" path="res://weapons/bullet.tscn" id="2_pxh0k"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_es75o"]
+size = Vector3(1, 0.25, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tsf64"]
+size = Vector3(0.25, 0.4, 0.25)
+
+[node name="Weapon" type="Node3D"]
+script = ExtResource("1_rma5x")
+BULLET = ExtResource("2_pxh0k")
+is_automatic = true
+
+[node name="Model" type="Node3D" parent="."]
+
+[node name="Gun" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_es75o")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36240518, -0.215442, 1.5841234e-08)
+mesh = SubResource("BoxMesh_tsf64")
+
+[node name="Point" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.27508366, 0.27978474, -0.5484638)

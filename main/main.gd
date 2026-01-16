@@ -26,8 +26,8 @@ func prepare_inventories():
 func create_weapons():
 	for slot: SlotData in player.inventory_data.slot_datas:
 		if slot:
-			if slot.item_data is Weapon:
-				var weapon: Weapon = slot.item_data
+			if slot.item_data is ItemDataWeapon:
+				var weapon: ItemDataWeapon = slot.item_data
 				player.add_to_held(weapon)
 
 func _on_inventory_toggled(external_inventory_owner = null):

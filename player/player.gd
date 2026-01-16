@@ -5,8 +5,8 @@ const JUMP_VELOCITY = 4.5
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryDataEquip
 @export var weapon_inventory_data: InventoryDataWeapon
-var held_weapons: Dictionary[Weapon, Node3D]
-var equipped_weapons: Dictionary[int, Weapon]
+var held_weapons: Dictionary[ItemDataWeapon, Node3D]
+var equipped_weapons: Dictionary[int, ItemDataWeapon]
 var equipped_weapon_index: int = 0
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health: int
@@ -90,7 +90,7 @@ func heal(amount) -> void:
 	health = min(health + amount, max_health)
 	print("health now %s" % [health])
 
-func add_to_held(weapon: Weapon):
+func add_to_held(weapon: ItemDataWeapon):
 	var model = weapon.MODEL.instantiate()
 	model.is_enabled = false
 	model.hide()
@@ -98,12 +98,12 @@ func add_to_held(weapon: Weapon):
 	held_weapons[weapon] = model
 	print(held_weapons)
 
-func remove_from_held(weapon: Weapon):
+func remove_from_held(weapon: ItemDataWeapon):
 	var model = held_weapons[weapon]
 	held_weapons.erase(weapon)
 	model.queue_free()
 	
-func add_to_equipped(weapon: Weapon, index: int):
+func add_to_equipped(weapon: ItemDataWeapon, index: int):
 	equipped_weapons[index] = weapon
 	
 func remove_from_equipped(index: int):
