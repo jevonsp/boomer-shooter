@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bpchbhs1f1cfs"]
+[gd_scene load_steps=2 format=3 uid="uid://bpchbhs1f1cfs"]
 
 [ext_resource type="Script" uid="uid://55e6aoimoy1k" path="res://inventory/inventory.gd" id="1_qse2j"]
-[ext_resource type="PackedScene" uid="uid://b4bhhbupq5wps" path="res://inventory/slot.tscn" id="2_f8i2h"]
 
 [node name="Inventory" type="PanelContainer"]
 offset_right = 40.0
@@ -10,10 +9,11 @@ script = ExtResource("1_qse2j")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer"]
 layout_mode = 2
 columns = 2
-
-[node name="Slot" parent="MarginContainer/GridContainer" instance=ExtResource("2_f8i2h")]
-layout_mode = 2
