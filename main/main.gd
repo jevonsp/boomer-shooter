@@ -1,6 +1,9 @@
 extends Node
 @onready var player: CharacterBody3D = $Player
 @onready var inventory_interface: Control = $UI/InventoryInterface
+@onready var hotbar_inventory: PanelContainer = $UI/HotbarInventory
+@onready var equip_inventory: PanelContainer = $UI/InventoryInterface/EquipInventory
+@onready var weapon_inventory: PanelContainer = $UI/InventoryInterface/WeaponInventory
 
 func _ready() -> void:
 	get_window().grab_focus()
@@ -9,15 +12,15 @@ func _ready() -> void:
 
 func connect_signals():
 	player.toggle_inventory.connect(_on_inventory_toggled)
-	
+	inventory_interface.force_close.connect(_on_inventory_toggled)
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(_on_inventory_toggled)
-	
+		
 func prepare_inventories():
-	inventory_interface.hide()
-	inventory_interface.grabbed_slot.hide()
-	inventory_interface.external_inventory.hide()
 	inventory_interface.set_player_inventory(player.inventory_data)
+	inventory_interface.set_equip_inventory(player.equip_inventory_data)
+	inventory_interface.set_weapon_inventory(player.weapon_inventory_data)
+	hotbar_inventory.set_inventory_data(player.inventory_data)
 
 func _on_inventory_toggled(external_inventory_owner = null):
 	inventory_interface.visible = !inventory_interface.visible

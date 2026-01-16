@@ -2,13 +2,14 @@ extends CharacterBody3D
 signal toggle_inventory
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+@export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
+@export var weapon_inventory_data: InventoryDataWeapon
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health: int
 var max_health: int = 5
 @onready var camera: Camera3D = $Camera3D
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
-@export var inventory_data: InventoryData
 func _ready() -> void:
 	health = max_health
 	PlayerManager.player = self

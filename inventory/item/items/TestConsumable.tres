@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_md8to")
 name = "Test Consumable"
+description = "Testing Consumable"
 texture = ExtResource("2_wj485")
 can_stack = true
 metadata/_custom_type_script = "uid://nv5dkho4gmik"
