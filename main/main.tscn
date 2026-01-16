@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ccm6v0lbtkr0p"]
+[gd_scene load_steps=15 format=3 uid="uid://ccm6v0lbtkr0p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyec73hvubwn" path="res://player/player.tscn" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://cf47jb4ar4xaj" path="res://main/main.gd" id="1_xwkvk"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bpchbhs1f1cfs" path="res://inventory/inventory.tscn" id="3_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://b4bhhbupq5wps" path="res://inventory/slot/slot.tscn" id="4_4dugh"]
 [ext_resource type="Resource" uid="uid://rehdkfow4rw2" path="res://inventory/TestInv.tres" id="5_kfbq2"]
-[ext_resource type="PackedScene" uid="uid://cwboq6egcbhqv" path="res://objects/chest.tscn" id="8_67ri8"]
+[ext_resource type="PackedScene" uid="uid://cwboq6egcbhqv" path="res://objects/interactables/chest.tscn" id="8_67ri8"]
+[ext_resource type="PackedScene" uid="uid://creqratlq8k0q" path="res://inventory/item/pickups/pickup.tscn" id="9_grrlh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwkvk"]
 
@@ -96,3 +97,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.393941)
 
 [node name="Chest" parent="." instance=ExtResource("8_67ri8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Pickup" parent="." instance=ExtResource("9_grrlh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)

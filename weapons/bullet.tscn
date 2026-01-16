@@ -10,6 +10,8 @@ radius = 0.1
 height = 0.2
 
 [node name="Bullet" type="CharacterBody3D" groups=["bullet"]]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_fc8e7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
