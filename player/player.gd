@@ -19,16 +19,19 @@ func _ready() -> void:
 	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-func _unhandled_input(_event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 		
 	if InputManager.is_action_pressed("inventory"):
 		toggle_inventory.emit()
-		
 	if InputManager.is_action_pressed("interact"):
 		interact()
-		
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_UP:
+				switch_weapons()
+	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * .005)
@@ -114,7 +117,18 @@ func remove_from_equipped(index: int):
 	equipped_weapons[index] = null
 	
 func update_weapons():
-	var weapon = equipped_weapons[equipped_weapon_index]
-	if weapon:
-		held_weapons[weapon].show()
-		held_weapons[weapon].is_enabled = true
+	var item = equipped_weapons.get(equipped_weapon_index)
+	if item:
+		var weapon = held_weapons[item]
+		weapon.show()
+		weapon.is_enabled = true
+
+func switch_weapons():
+	print("switch")
+	var item = equipped_weapons.get(equipped_weapon_index)
+	if item:
+		var weapon = held_weapons[item]
+		weapon.hide()
+		weapon.is_enabled = false
+	equipped_weapon_index = (equipped_weapon_index + 1) % 2
+	update_weapons()

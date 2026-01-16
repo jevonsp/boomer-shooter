@@ -25,7 +25,8 @@ func setup_defaults():
 				"hotbar3": [KEY_3],
 				"hotbar4": [KEY_4],
 				"hotbar5": [KEY_5],
-				"hotbar6": [KEY_6], }
+				"hotbar6": [KEY_6], 
+				"switch_weapons" :[MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_LEFT]}
 
 func is_action_pressed(action: String) -> bool:
 	for key in keybinds.get(action, []):

@@ -5,16 +5,24 @@ class_name Weapon
 @export var shot_time: float = .3
 var is_enabled: bool = true
 var timer: float = 0.0
+var was_firing: bool = false
 @onready var point: Node3D = $Point
 
 func _process(delta: float) -> void:
-	if is_automatic and \
-			Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and \
-			Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+	var is_firing = is_automatic and \
+		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and \
+		Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+		
+	if is_firing:
+		if not was_firing:
+			fire()
+			timer = 0.0
 		timer += delta
 		if timer >= shot_time:
 			fire()
 			timer = 0.0
+		
+	was_firing = is_firing
 
 func _input(event):
 	if not is_enabled:
