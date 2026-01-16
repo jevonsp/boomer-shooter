@@ -5,11 +5,15 @@ const JUMP_VELOCITY = 4.5
 @export var inventory_data: InventoryData
 @export var equip_inventory_data: InventoryDataEquip
 @export var weapon_inventory_data: InventoryDataWeapon
+var held_weapons: Dictionary[Weapon, Node3D]
+var equipped_weapons: Dictionary[int, Weapon]
+var equipped_weapon_index: int = 0
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health: int
 var max_health: int = 5
 @onready var camera: Camera3D = $Camera3D
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
+@onready var marker_3d: Marker3D = $Camera3D/Marker3D
 func _ready() -> void:
 	health = max_health
 	PlayerManager.player = self
@@ -85,3 +89,32 @@ func heal(amount) -> void:
 	print("healing for %s" % [amount])
 	health = min(health + amount, max_health)
 	print("health now %s" % [health])
+
+func add_to_held(weapon: Weapon):
+	var model = weapon.MODEL.instantiate()
+	model.is_enabled = false
+	model.hide()
+	marker_3d.add_child(model)
+	held_weapons[weapon] = model
+	print(held_weapons)
+
+func remove_from_held(weapon: Weapon):
+	var model = held_weapons[weapon]
+	held_weapons.erase(weapon)
+	model.queue_free()
+	
+func add_to_equipped(weapon: Weapon, index: int):
+	equipped_weapons[index] = weapon
+	
+func remove_from_equipped(index: int):
+	var weapon = equipped_weapons[index]
+	var model = held_weapons[weapon]
+	model.hide()
+	model.is_enabled = false
+	equipped_weapons[index] = null
+	
+func update_weapons():
+	var weapon = equipped_weapons[equipped_weapon_index]
+	if weapon:
+		held_weapons[weapon].show()
+		held_weapons[weapon].is_enabled = true

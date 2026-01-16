@@ -9,6 +9,7 @@ func _ready() -> void:
 	get_window().grab_focus()
 	connect_signals()
 	prepare_inventories()
+	create_weapons()
 
 func connect_signals():
 	player.toggle_inventory.connect(_on_inventory_toggled)
@@ -21,6 +22,13 @@ func prepare_inventories():
 	inventory_interface.set_equip_inventory(player.equip_inventory_data)
 	inventory_interface.set_weapon_inventory(player.weapon_inventory_data)
 	hotbar_inventory.set_inventory_data(player.inventory_data)
+
+func create_weapons():
+	for slot: SlotData in player.inventory_data.slot_datas:
+		if slot:
+			if slot.item_data is Weapon:
+				var weapon: Weapon = slot.item_data
+				player.add_to_held(weapon)
 
 func _on_inventory_toggled(external_inventory_owner = null):
 	inventory_interface.visible = !inventory_interface.visible

@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnyec73hvubwn"]
+[gd_scene load_steps=10 format=3 uid="uid://dnyec73hvubwn"]
 
 [ext_resource type="Script" uid="uid://cddy4tbm5ogev" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Resource" uid="uid://rehdkfow4rw2" path="res://inventory/TestInv.tres" id="2_g6k8r"]
-[ext_resource type="PackedScene" uid="uid://dxcpwm8np17a5" path="res://weapons/gun.tscn" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://ucu2pnv7c5go" path="res://inventory/slot/SlotData.gd" id="3_boad6"]
 [ext_resource type="Script" uid="uid://bukgejlodxnml" path="res://inventory/InventoryDataEquip.gd" id="4_rgyib"]
 [ext_resource type="Script" uid="uid://by0jhm5qhaqwg" path="res://inventory/InventoryDataWeapon.gd" id="5_hg6s5"]
@@ -45,8 +44,6 @@ collision_mask = 4
 
 [node name="Marker3D" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37581486, -0.48882866, -1.0564556)
-
-[node name="Gun" parent="Camera3D/Marker3D" instance=ExtResource("2_rkbax")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

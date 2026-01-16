@@ -59,6 +59,12 @@ func use_slot_data(index) -> void:
 	inventory_updated.emit(self)
 
 func clear_slot_data(index) -> void:
+	var item = slot_datas[index]
+	var held_weapons: Dictionary = PlayerManager.player.held_weapons
+	if item in held_weapons:
+		var weapon = held_weapons[item]
+		weapon.queue_free()
+		held_weapons.erase(item)
 	slot_datas[index] = null
 	inventory_updated.emit(self)
 	print("temp delete method")
