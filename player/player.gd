@@ -1,21 +1,29 @@
 extends CharacterBody3D
-
+signal toggle_inventory
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+@export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
+@export var weapon_inventory_data: InventoryDataWeapon
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var health: int = 5
-
+var health: int
+var max_health: int = 5
 @onready var camera: Camera3D = $Camera3D
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
-
 func _ready() -> void:
+	health = max_health
 	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
+		
+	if InputManager.is_action_pressed("inventory"):
+		toggle_inventory.emit()
+		
+	if InputManager.is_action_pressed("interact"):
+		interact()
 		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -68,3 +76,12 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func interact() -> void:
+	if interact_ray.is_colliding():
+		interact_ray.get_collider().player_interact()
+
+func heal(amount) -> void:
+	print("healing for %s" % [amount])
+	health = min(health + amount, max_health)
+	print("health now %s" % [health])
