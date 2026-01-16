@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccm6v0lbtkr0p"]
+[gd_scene load_steps=16 format=3 uid="uid://ccm6v0lbtkr0p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyec73hvubwn" path="res://player/player.tscn" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://cf47jb4ar4xaj" path="res://main/main.gd" id="1_xwkvk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cw6w3voc584ml" path="res://enemies/enemy.tscn" id="2_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://bpchbhs1f1cfs" path="res://inventory/inventory.tscn" id="3_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://b4bhhbupq5wps" path="res://inventory/slot/slot.tscn" id="4_4dugh"]
+[ext_resource type="PackedScene" uid="uid://brixpcl3w4lh8" path="res://inventory/hotbar_inventory.tscn" id="5_0i4oc"]
 [ext_resource type="Resource" uid="uid://rehdkfow4rw2" path="res://inventory/TestInv.tres" id="5_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://cwboq6egcbhqv" path="res://objects/interactables/chest.tscn" id="8_67ri8"]
 [ext_resource type="PackedScene" uid="uid://creqratlq8k0q" path="res://inventory/item/pickups/pickup.tscn" id="9_grrlh"]
@@ -79,6 +80,19 @@ grow_vertical = 2
 modulate = Color(1, 1, 1, 0.49803922)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
+
+[node name="HotbarInventory" parent="UI" instance=ExtResource("5_0i4oc")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -142.0
+offset_top = -80.0
+offset_right = 142.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_53q0u")

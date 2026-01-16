@@ -32,14 +32,21 @@ func clear_external_inventory() -> void:
 		external_inventory.hide()
 		external_inventory_owner = null
 
-func on_inventory_interact(inventory_data: InventoryData, index: int, button: int) -> void:
+func on_inventory_interact(
+	inventory_data: InventoryData, index: int, button: int, shift_pressed: bool
+	) -> void:
 	print("%s %s %s" % [inventory_data, index, button])
 	
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
+			if shift_pressed:
+				inventory_data.clear_slot_data(index)
+				return
 			grabbed_slot_data = inventory_data.grab_slot_data(index)
 		[_, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
+		[null, MOUSE_BUTTON_RIGHT]:
+			inventory_data.use_slot_data(index)
 	update_grabbed_slot()
 
 func update_grabbed_slot() -> void:
