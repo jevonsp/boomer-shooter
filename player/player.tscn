@@ -22,7 +22,8 @@ shape = SubResource("CapsuleShape3D_oul6g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7030616, -0.044736236)
 
 [node name="InteractRay" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5144812, 1.4734595, 0)
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 4
 
 [node name="Marker3D" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37581486, -0.48882866, -1.0564556)
@@ -41,3 +42,4 @@ offset_right = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

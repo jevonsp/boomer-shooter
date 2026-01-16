@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ccm6v0lbtkr0p"]
+[gd_scene load_steps=14 format=3 uid="uid://ccm6v0lbtkr0p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyec73hvubwn" path="res://player/player.tscn" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://cf47jb4ar4xaj" path="res://main/main.gd" id="1_xwkvk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bpchbhs1f1cfs" path="res://inventory/inventory.tscn" id="3_kfbq2"]
 [ext_resource type="PackedScene" uid="uid://b4bhhbupq5wps" path="res://inventory/slot/slot.tscn" id="4_4dugh"]
 [ext_resource type="Resource" uid="uid://rehdkfow4rw2" path="res://inventory/TestInv.tres" id="5_kfbq2"]
+[ext_resource type="PackedScene" uid="uid://cwboq6egcbhqv" path="res://objects/chest.tscn" id="8_67ri8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwkvk"]
 
@@ -37,7 +38,6 @@ shadow_enabled = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryInterface" type="Control" parent="UI"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,8 +60,21 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ExternalInventory" parent="UI/InventoryInterface" instance=ExtResource("3_kfbq2")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -64.0
+offset_right = -104.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+
 [node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("4_4dugh")]
-visible = false
 modulate = Color(1, 1, 1, 0.49803922)
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
@@ -80,3 +93,6 @@ inventory_data = ExtResource("5_kfbq2")
 
 [node name="Enemy" parent="." instance=ExtResource("2_pjrb6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.393941)
+
+[node name="Chest" parent="." instance=ExtResource("8_67ri8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)

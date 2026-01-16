@@ -19,6 +19,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if InputManager.is_action_pressed("inventory"):
 		toggle_inventory.emit()
 		
+	if InputManager.is_action_pressed("interact"):
+		interact()
+		
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * .005)
@@ -70,3 +73,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func interact() -> void:
+	if interact_ray.is_colliding():
+		interact_ray.get_collider().player_interact()

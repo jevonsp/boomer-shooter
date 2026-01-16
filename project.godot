@@ -19,3 +19,7 @@ config/icon="res://icon.svg"
 
 InputManager="*res://player/InputManager.gd"
 PlayerManager="*res://player/PlayerManager.gd"
+
+[global_group]
+
+external_inventory=""
