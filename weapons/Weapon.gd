@@ -1,13 +1,14 @@
 extends Node3D
 class_name Weapon
 @export var BULLET: PackedScene
+@export var damage: int = 1
 @export var is_automatic: bool = false
 @export var shot_time: float = .3
+@export var bullet_size: float = 0.1
 var is_enabled: bool = true
 var timer: float = 0.0
 var was_firing: bool = false
 @onready var point: Node3D = $Point
-
 func _process(delta: float) -> void:
 	var is_firing = is_automatic and \
 		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and \

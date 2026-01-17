@@ -5,7 +5,6 @@
 
 [resource]
 script = ExtResource("1_lknpb")
-name = "Test Item 1"
 description = "This Item Can Stack"
 texture = ExtResource("2_7u6v8")
 can_stack = true

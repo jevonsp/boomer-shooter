@@ -11,6 +11,7 @@ func _ready() -> void:
 	prepare_inventories()
 	create_weapons()
 
+
 func connect_signals():
 	player.toggle_inventory.connect(_on_inventory_toggled)
 	inventory_interface.force_close.connect(_on_inventory_toggled)

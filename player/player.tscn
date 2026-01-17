@@ -43,7 +43,7 @@ target_position = Vector3(0, 0, -2.5)
 collision_mask = 4
 
 [node name="Marker3D" type="Marker3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.37581486, -0.48882866, -1.0564556)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7714722, -0.6457161, -1.0564556)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8

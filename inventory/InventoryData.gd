@@ -29,6 +29,29 @@ func drop_slot_data(grabbed_slot_data: SlotData, index: int) -> SlotData:
 	return return_slot_data
 
 func pick_up_slot_data(slot_data: SlotData) -> bool:
+	var player = PlayerManager.player
+	var item_data = slot_data.item_data
+	if item_data is ItemDataWeapon:
+		var weapon_inventory_data: InventoryDataWeapon = player.weapon_inventory_data
+		for index in weapon_inventory_data.slot_datas.size():
+			if not weapon_inventory_data.slot_datas[index]:
+				weapon_inventory_data.slot_datas[index] = slot_data
+				print(weapon_inventory_data.slot_datas[index].item_data.name)
+				player.add_to_held(slot_data.item_data)
+				player.add_to_equipped(slot_data.item_data, index)
+				player.update_weapons()
+				weapon_inventory_data.inventory_updated.emit(weapon_inventory_data)
+				inventory_updated.emit(self)
+				return true
+	#TODO: Equipment Types and checking type vs eachother to put in right slot
+	if item_data is ItemDataEquipment:
+		var equip_inventory_data: InventoryDataEquip = player.equip_inventory_data
+		for index in equip_inventory_data.slot_datas.size():
+			if not equip_inventory_data.slot_datas[index]:
+				equip_inventory_data.slot_datas[index] = slot_data
+				inventory_updated.emit(self)
+				return true
+	
 	for index in slot_datas.size():
 		if slot_datas[index] and slot_datas[index].can_fully_merge_with(slot_data):
 			slot_datas[index].fully_merge_with(slot_data)
