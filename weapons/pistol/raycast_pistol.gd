@@ -3,9 +3,19 @@ const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
 var camera: Camera3D
 var line_mesh: MeshInstance3D
 var immediate_mesh: ImmediateMesh
+var hitmarker_visible: bool = false:
+	set(value):
+		print("hm visible called")
+		hitmarker_visible = value
+		if value == true:
+			hit_marker.visible = true
+			await get_tree().create_timer(0.1).timeout
+			hitmarker_visible = false
+			hit_marker.visible = false
 @onready var player: CharacterBody3D = PlayerManager.player
 @onready var muzzle: Marker3D = $Marker3D
 @onready var muzzle_flash: GPUParticles3D = $Marker3D/MuzzleFlash
+@onready var hit_marker: TextureRect = $CanvasLayer/Control/HitMarker
 func _ready() -> void:
 	line_mesh = MeshInstance3D.new()
 	immediate_mesh = ImmediateMesh.new()
@@ -30,6 +40,7 @@ func fire():
 	if collision:
 		if collision.collider.is_in_group("enemy"):
 			print("hit enemy")
+			hitmarker_visible = true
 		else:
 			print(collision.collider.name)
 		to = collision.position
