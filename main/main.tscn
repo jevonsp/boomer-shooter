@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ccm6v0lbtkr0p"]
+[gd_scene load_steps=18 format=3 uid="uid://ccm6v0lbtkr0p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyec73hvubwn" path="res://player/player.tscn" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://cf47jb4ar4xaj" path="res://main/main.gd" id="1_xwkvk"]
@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cwboq6egcbhqv" path="res://objects/interactables/chest.tscn" id="8_67ri8"]
 [ext_resource type="PackedScene" uid="uid://creqratlq8k0q" path="res://inventory/item/pickups/pickup.tscn" id="9_grrlh"]
 [ext_resource type="Script" uid="uid://ucu2pnv7c5go" path="res://inventory/slot/SlotData.gd" id="10_0i4oc"]
-[ext_resource type="Resource" uid="uid://cyfgxpj4jsv48" path="res://inventory/item/items/TestRifle.tres" id="10_fwcvl"]
-[ext_resource type="Resource" uid="uid://ceflps17hl33x" path="res://inventory/item/items/TestPistol.tres" id="12_na0o7"]
+[ext_resource type="Resource" uid="uid://bmfk51bmftshp" path="res://inventory/item/items/TestRaycastPistol.tres" id="10_bsumw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwkvk"]
 
@@ -31,12 +30,7 @@ size = Vector3(20, 0.1, 20)
 
 [sub_resource type="Resource" id="Resource_bsumw"]
 script = ExtResource("10_0i4oc")
-item_data = ExtResource("10_fwcvl")
-metadata/_custom_type_script = "uid://ucu2pnv7c5go"
-
-[sub_resource type="Resource" id="Resource_73k8k"]
-script = ExtResource("10_0i4oc")
-item_data = ExtResource("12_na0o7")
+item_data = ExtResource("10_bsumw")
 metadata/_custom_type_script = "uid://ucu2pnv7c5go"
 
 [node name="Main" type="Node"]
@@ -129,9 +123,9 @@ grow_vertical = 0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_53q0u")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="Floor" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Floor"]
 shape = SubResource("BoxShape3D_53q0u")
 
 [node name="Player" parent="." instance=ExtResource("1_53q0u")]
@@ -146,7 +140,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="Pickup" parent="." instance=ExtResource("9_grrlh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51416826, 1.4375262, 0.09114444)
 slot_data = SubResource("Resource_bsumw")
-
-[node name="Pickup2" parent="." instance=ExtResource("9_grrlh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07185149, 1.4375262, 0.3877678)
-slot_data = SubResource("Resource_73k8k")
