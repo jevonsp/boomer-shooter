@@ -8,7 +8,6 @@ class_name Weapon
 var is_enabled: bool = true
 var timer: float = 0.0
 var was_firing: bool = false
-@onready var point: Node3D = $Point
 func _process(delta: float) -> void:
 	var is_firing = is_automatic and \
 		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and \
@@ -39,7 +38,10 @@ func fire():
 	if not is_enabled:
 		return
 	var bullet:CharacterBody3D = BULLET.instantiate()
+	var point = PlayerManager.player.shoot_point
 	bullet.position = point.global_position
 	bullet.transform.basis = point.global_transform.basis
 	var root = get_tree().root
 	root.add_child(bullet)
+	bullet.damage = damage
+	bullet.size = bullet_size

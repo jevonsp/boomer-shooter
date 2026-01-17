@@ -13,7 +13,8 @@ var health: int
 var max_health: int = 5
 @onready var camera: Camera3D = $Camera3D
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
-@onready var marker_3d: Marker3D = $Camera3D/Marker3D
+@onready var gun_point: Marker3D = $Camera3D/GunAttachPoint
+@onready var shoot_point: Marker3D = $Camera3D/ShootPoint
 func _ready() -> void:
 	health = max_health
 	PlayerManager.player = self
@@ -97,7 +98,7 @@ func add_to_held(weapon: ItemDataWeapon):
 	var model = weapon.MODEL.instantiate()
 	model.is_enabled = false
 	model.hide()
-	marker_3d.add_child(model)
+	gun_point.add_child(model)
 	held_weapons[weapon] = model
 	print(held_weapons)
 

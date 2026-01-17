@@ -31,6 +31,3 @@ mesh = SubResource("BoxMesh_tsf64")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Model/Gun"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30491516, -0.21577233, 1.8626451e-08)
 mesh = SubResource("BoxMesh_mvahf")
-
-[node name="Point" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.27508366, 0.27978474, -0.5484638)

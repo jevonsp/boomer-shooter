@@ -42,8 +42,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7030616, -0.044736236)
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 4
 
-[node name="Marker3D" type="Marker3D" parent="Camera3D"]
+[node name="GunAttachPoint" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7714722, -0.6457161, -1.0564556)
+
+[node name="ShootPoint" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 8
