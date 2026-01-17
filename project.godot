@@ -23,6 +23,7 @@ PlayerManager="*res://player/PlayerManager.gd"
 [global_group]
 
 external_inventory=""
+enemy=""
 
 [layer_names]
 
