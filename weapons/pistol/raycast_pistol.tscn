@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b564uk326abws"]
+[gd_scene load_steps=5 format=3 uid="uid://b564uk326abws"]
 
 [ext_resource type="Script" uid="uid://nyxnpypes6fd" path="res://weapons/pistol/raycast_pistol.gd" id="1_qdw6y"]
+[ext_resource type="PackedScene" uid="uid://brnph4das8y21" path="res://weapons/muzzle_flash.tscn" id="2_imepn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_nosnq"]
 size = Vector3(1, 0.25, 0.25)
@@ -24,3 +25,5 @@ mesh = SubResource("BoxMesh_tsf64")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7859471)
+
+[node name="MuzzleFlash" parent="Marker3D" instance=ExtResource("2_imepn")]
