@@ -1,20 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnyec73hvubwn"]
+[gd_scene load_steps=5 format=3 uid="uid://dnyec73hvubwn"]
 
 [ext_resource type="Script" uid="uid://cddy4tbm5ogev" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Resource" uid="uid://rehdkfow4rw2" path="res://inventory/TestInv.tres" id="2_g6k8r"]
-[ext_resource type="Script" uid="uid://ucu2pnv7c5go" path="res://inventory/slot/SlotData.gd" id="3_boad6"]
-[ext_resource type="Script" uid="uid://bukgejlodxnml" path="res://inventory/InventoryDataEquip.gd" id="4_rgyib"]
-[ext_resource type="Script" uid="uid://by0jhm5qhaqwg" path="res://inventory/InventoryDataWeapon.gd" id="5_hg6s5"]
-
-[sub_resource type="Resource" id="Resource_2ieo8"]
-script = ExtResource("4_rgyib")
-slot_datas = Array[ExtResource("3_boad6")]([null, null, null, null])
-metadata/_custom_type_script = "uid://bukgejlodxnml"
-
-[sub_resource type="Resource" id="Resource_ebec5"]
-script = ExtResource("5_hg6s5")
-slot_datas = Array[ExtResource("3_boad6")]([null, null])
-metadata/_custom_type_script = "uid://by0jhm5qhaqwg"
+[ext_resource type="Script" uid="uid://dqiuu8hbmmijs" path="res://player/weapon_manager.gd" id="2_rkbax"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
 
@@ -23,9 +10,6 @@ metadata/_custom_type_script = "uid://by0jhm5qhaqwg"
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_oul6g")
-inventory_data = ExtResource("2_g6k8r")
-equip_inventory_data = SubResource("Resource_2ieo8")
-weapon_inventory_data = SubResource("Resource_ebec5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -42,8 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7030616, -0.044736236)
 target_position = Vector3(0, 0, -2.5)
 collision_mask = 4
 
-[node name="GunAttachPoint" type="Marker3D" parent="Camera3D"]
+[node name="WeaponManager" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7714722, -0.6457161, -1.0564556)
+script = ExtResource("2_rkbax")
 
 [node name="ShootPoint" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1)

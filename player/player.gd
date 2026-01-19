@@ -1,25 +1,22 @@
 extends CharacterBody3D
+const PISTOL = preload("res://weapons/base_weapon.tscn")
 signal toggle_inventory
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-@export var inventory_data: InventoryData
-@export var equip_inventory_data: InventoryDataEquip
-@export var weapon_inventory_data: InventoryDataWeapon
-var held_weapons: Dictionary[ItemDataWeapon, Node3D]
-var equipped_weapons: Dictionary[int, ItemDataWeapon]
-var equipped_weapon_index: int = 0
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var health: int
 var max_health: int = 5
 @onready var camera: Camera3D = $Camera3D
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
-@onready var gun_point: Marker3D = $Camera3D/GunAttachPoint
+@onready var weapon_manager: Marker3D = $Camera3D/WeaponManager
 @onready var shoot_point: Marker3D = $Camera3D/ShootPoint
+
 func _ready() -> void:
 	health = max_health
 	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	weapon_manager.create_weapons()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
@@ -31,7 +28,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_UP:
-				switch_weapons()
+				print("switch")
+				#switch_weapons()
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -94,42 +92,42 @@ func heal(amount) -> void:
 	health = min(health + amount, max_health)
 	print("health now %s" % [health])
 
-func add_to_held(weapon: ItemDataWeapon):
-	var model = weapon.MODEL.instantiate()
-	model.is_enabled = false
-	model.hide()
-	gun_point.add_child(model)
-	held_weapons[weapon] = model
-	print(held_weapons)
-
-func remove_from_held(weapon: ItemDataWeapon):
-	var model = held_weapons[weapon]
-	held_weapons.erase(weapon)
-	model.queue_free()
-	
-func add_to_equipped(weapon: ItemDataWeapon, index: int):
-	equipped_weapons[index] = weapon
-	
-func remove_from_equipped(index: int):
-	var weapon = equipped_weapons[index]
-	var model = held_weapons[weapon]
-	model.hide()
-	model.is_enabled = false
-	equipped_weapons[index] = null
-	
-func update_weapons():
-	var item = equipped_weapons.get(equipped_weapon_index)
-	if item:
-		var weapon = held_weapons[item]
-		weapon.show()
-		weapon.is_enabled = true
-
-func switch_weapons():
-	print("switch")
-	var item = equipped_weapons.get(equipped_weapon_index)
-	if item:
-		var weapon = held_weapons[item]
-		weapon.hide()
-		weapon.is_enabled = false
-	equipped_weapon_index = (equipped_weapon_index + 1) % 2
-	update_weapons()
+#func add_to_held(weapon: ItemDataWeapon):
+	#var model = weapon.MODEL.instantiate()
+	#model.is_enabled = false
+	#model.hide()
+	#gun_point.add_child(model)
+	#held_weapons[weapon] = model
+	#print(held_weapons)
+#
+#func remove_from_held(weapon: ItemDataWeapon):
+	#var model = held_weapons[weapon]
+	#held_weapons.erase(weapon)
+	#model.queue_free()
+	#
+#func add_to_equipped(weapon: ItemDataWeapon, index: int):
+	#equipped_weapons[index] = weapon
+	#
+#func remove_from_equipped(index: int):
+	#var weapon = equipped_weapons[index]
+	#var model = held_weapons[weapon]
+	#model.hide()
+	#model.is_enabled = false
+	#equipped_weapons[index] = null
+	#
+#func update_weapons():
+	#var item = equipped_weapons.get(equipped_weapon_index)
+	#if item:
+		#var weapon = held_weapons[item]
+		#weapon.show()
+		#weapon.is_enabled = true
+#
+#func switch_weapons():
+	#print("switch")
+	#var item = equipped_weapons.get(equipped_weapon_index)
+	#if item:
+		#var weapon = held_weapons[item]
+		#weapon.hide()
+		#weapon.is_enabled = false
+	#equipped_weapon_index = (equipped_weapon_index + 1) % 2
+	#update_weapons()

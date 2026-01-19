@@ -1,11 +1,21 @@
-extends Weapon
+extends Node3D
+class_name BaseWeapon
 const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
+@export var BULLET: PackedScene
+@export var damage: int = 1
+@export var clip_size: int = 6
+@export var reload_time: float = 1.0
+@export var is_automatic: bool = false
+@export var shot_time: float = .3
+@export var bullet_size: float = 0.1
+var is_enabled: bool = false
+var timer: float = 0.0
+var was_firing: bool = false
 var camera: Camera3D
 var line_mesh: MeshInstance3D
 var immediate_mesh: ImmediateMesh
 var hitmarker_visible: bool = false:
 	set(value):
-		print("hm visible called")
 		hitmarker_visible = value
 		if value == true:
 			hit_marker.visible = true
@@ -21,8 +31,35 @@ func _ready() -> void:
 	immediate_mesh = ImmediateMesh.new()
 	line_mesh.mesh = immediate_mesh
 	add_child(line_mesh)
+	print(PlayerManager.player)
 	camera = PlayerManager.player.camera
-	
+
+func _process(delta: float) -> void:
+	var is_firing = is_automatic and \
+		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and \
+		Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
+		
+	if is_firing:
+		if not was_firing:
+			fire()
+			timer = 0.0
+		timer += delta
+		if timer >= shot_time:
+			fire()
+			timer = 0.0
+		
+	was_firing = is_firing
+
+func _input(event):
+	if not is_enabled:
+		return
+	if is_automatic:
+		return
+	if event is InputEventMouseButton and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event.is_pressed():
+		match event.button_index:
+			2: 
+				fire()
+				
 func fire():
 	if not is_enabled:
 		return
@@ -38,7 +75,10 @@ func fire():
 	var to
 	if collision:
 		if collision.collider.is_in_group("enemy"):
-			print("hit enemy")
+			var enemy_area_3d = collision.collider
+			var enemy = enemy_area_3d.get_parent()
+			var amount = damage
+			enemy.take_damage(amount)
 			hitmarker_visible = true
 		else:
 			print(collision.collider.name)
@@ -60,4 +100,3 @@ func make_bullet_trail(from: Vector3, to: Vector3):
 		bullet_tracer.global_position = start_pos
 		bullet_tracer.rotation = muzzle.global_rotation
 		bullet_tracer.target_pos = to
-		
