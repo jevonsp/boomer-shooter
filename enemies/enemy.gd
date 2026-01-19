@@ -1,6 +1,12 @@
 extends Node3D
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("bullet"):
-		body.queue_free()
-		print("hit=%s" % [body.damage])
+var hitpoints: int = 5
+
+func take_damage(amount) -> void:
+	print("hit=%s" % [amount])
+	hitpoints -= amount
+	if hitpoints <= 0:
+		die()
+
+func die() -> void:
+	queue_free()
