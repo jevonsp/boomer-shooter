@@ -15,7 +15,7 @@ func _ready() -> void:
 	health = max_health
 	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	weapon_manager.create_weapons()
+	weapon_manager.setup_weapons()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -30,6 +30,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_UP:
 				print("switch")
 				#switch_weapons()
+	if InputManager.is_action_pressed("reload"):
+		weapon_manager.current_gun_equipped.reload()
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

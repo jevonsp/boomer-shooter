@@ -14,18 +14,13 @@ func setup_defaults():
 				"back": [KEY_S],
 				"right": [KEY_D],
 				"jump": [KEY_SPACE],
+				"reload": [KEY_R],
 				"primary_mouse": [MOUSE_BUTTON_LEFT],
 				"secondary_mouse": [MOUSE_BUTTON_RIGHT],
 				"interact": [KEY_E],
 				"inventory": [KEY_TAB],
 				"shift": [KEY_SHIFT],
 				"control": [KEY_CTRL],
-				"hotbar1": [KEY_1],
-				"hotbar2": [KEY_2],
-				"hotbar3": [KEY_3],
-				"hotbar4": [KEY_4],
-				"hotbar5": [KEY_5],
-				"hotbar6": [KEY_6], 
 				"switch_weapons" :[MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_LEFT]}
 
 func is_action_pressed(action: String) -> bool:
@@ -70,3 +65,5 @@ func load_keybinds():
 					keys.append(int(key_str))
 			
 			keybinds[action] = keys
+		
+		print(keybinds)

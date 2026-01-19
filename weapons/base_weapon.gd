@@ -9,6 +9,13 @@ const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
 @export var shot_time: float = .3
 @export var bullet_size: float = 0.1
 var is_enabled: bool = false
+var has_ammo: bool = true:
+	set(value):
+		has_ammo = value
+		if value == false:
+			reload_label.visible = true
+		else:
+			reload_label.visible = false
 var timer: float = 0.0
 var was_firing: bool = false
 var camera: Camera3D
@@ -22,10 +29,14 @@ var hitmarker_visible: bool = false:
 			await get_tree().create_timer(0.1).timeout
 			hitmarker_visible = false
 			hit_marker.visible = false
+var current_ammo_count: int
+var is_reloading: bool = false
 @onready var player: CharacterBody3D = PlayerManager.player
 @onready var muzzle: Marker3D = $Marker3D
 @onready var muzzle_flash: GPUParticles3D = $Marker3D/MuzzleFlash
 @onready var hit_marker: TextureRect = $CanvasLayer/Control/HitMarker
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var reload_label: Label = $CanvasLayer/Control/ReloadLabel
 func _ready() -> void:
 	line_mesh = MeshInstance3D.new()
 	immediate_mesh = ImmediateMesh.new()
@@ -33,6 +44,8 @@ func _ready() -> void:
 	add_child(line_mesh)
 	print(PlayerManager.player)
 	camera = PlayerManager.player.camera
+	
+	set_stats()
 
 func _process(delta: float) -> void:
 	var is_firing = is_automatic and \
@@ -60,8 +73,13 @@ func _input(event):
 			2: 
 				fire()
 				
+func set_stats():
+	current_ammo_count = clip_size
+				
 func fire():
 	if not is_enabled:
+		return
+	if not has_ammo:
 		return
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(
@@ -87,6 +105,12 @@ func fire():
 		to = camera.global_position - camera.global_transform.basis.z * 100
 	make_bullet_trail(from, to)
 	activate_muzzle_flash()
+	play_shoot_animation()
+	
+	current_ammo_count -= 1
+	
+	if current_ammo_count <= 0:
+		has_ammo = false
 	
 func activate_muzzle_flash():
 	muzzle_flash.emitting = true
@@ -100,3 +124,26 @@ func make_bullet_trail(from: Vector3, to: Vector3):
 		bullet_tracer.global_position = start_pos
 		bullet_tracer.rotation = muzzle.global_rotation
 		bullet_tracer.target_pos = to
+
+func play_shoot_animation():
+	if animation_player.is_playing():
+		animation_player.play("RESET")
+	animation_player.play("Shoot")
+	
+func reload():
+	print("reload called")
+	play_reload_animation()
+	is_reloading = true
+	current_ammo_count = clip_size
+	
+func play_reload_animation():
+	if is_reloading:
+		return
+	animation_player.play("Reload")
+	
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	print("animation finished	")
+	match anim_name:
+		"Reload":
+			is_reloading = false
+			has_ammo = true
