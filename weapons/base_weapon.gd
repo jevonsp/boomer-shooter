@@ -3,6 +3,8 @@ class_name BaseWeapon
 const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
 @export var BULLET: PackedScene
 @export var damage: int = 1
+@export var clip_size: int = 6
+@export var reload_time: float = 1.0
 @export var is_automatic: bool = false
 @export var shot_time: float = .3
 @export var bullet_size: float = 0.1
