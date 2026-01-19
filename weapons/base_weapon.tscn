@@ -1,31 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bffi8vyjc2t7c"]
+[gd_scene load_steps=5 format=3 uid="uid://bffi8vyjc2t7c"]
 
 [ext_resource type="Script" uid="uid://bmidfqiy10h5g" path="res://weapons/base_weapon.gd" id="1_g61sl"]
 [ext_resource type="PackedScene" uid="uid://brnph4das8y21" path="res://weapons/muzzle_flash.tscn" id="1_o51o1"]
+[ext_resource type="PackedScene" uid="uid://b2bq4hqr0o2o1" path="res://m_1911.tscn" id="2_3fcx8"]
 [ext_resource type="Texture2D" uid="uid://crqqo3jcq6ysb" path="res://weapons/Hit-Marker-PNG-Photo.png" id="2_g61sl"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_nosnq"]
-size = Vector3(1, 0.25, 0.25)
-
-[sub_resource type="BoxMesh" id="BoxMesh_tsf64"]
-size = Vector3(0.25, 0.4, 0.25)
 
 [node name="BaseWeapon" type="Node3D"]
 script = ExtResource("1_g61sl")
 
 [node name="Model" type="Node3D" parent="."]
 
-[node name="Gun" type="MeshInstance3D" parent="Model"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -0.2718191)
-mesh = SubResource("BoxMesh_nosnq")
-skeleton = NodePath("../..")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/Gun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3572808, -0.215442, 1.606523e-08)
-mesh = SubResource("BoxMesh_tsf64")
+[node name="M1911" parent="Model" instance=ExtResource("2_3fcx8")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7859471)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29587653, -0.62439454)
 
 [node name="MuzzleFlash" parent="Marker3D" instance=ExtResource("1_o51o1")]
 

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2bq4hqr0o2o1"]
+
+[ext_resource type="PackedScene" uid="uid://daqv0812wlevk" path="res://weapons/M1911.fbx" id="1_1yico"]
+
+[node name="M1911" instance=ExtResource("1_1yico")]
