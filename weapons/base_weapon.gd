@@ -8,7 +8,7 @@ const BULLET_TRACER = preload("res://weapons/weapon_assets/bullet_tracer.tscn")
 @export var clip_size: int = 6
 @export var reload_time: float = 1.0
 @export var is_automatic: bool = false
-@export var shot_time: float = .3
+@export var shot_time: float = .1
 @export var bullet_size: float = 0.1
 var is_enabled: bool = false:
 	set(value):

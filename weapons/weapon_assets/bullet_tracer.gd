@@ -6,7 +6,7 @@ var tracer_length = 1
 @onready var spawn_time = Time.get_ticks_msec()
 
 func _process(delta: float) -> void:
-	var dir = target_pos - self.global_position
+	var dir = (target_pos - Vector3(0.4,0.4,0.4)) - self.global_position
 	var add = dir.normalized() * speed * delta
 	add = add.limit_length(dir.length())
 	global_position += add

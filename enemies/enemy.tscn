@@ -30,4 +30,4 @@ debug_color = Color(1, 0, 0, 0.41960785)
 [node name="zombie" parent="." instance=ExtResource("2_7frlh")]
 
 [node name="Blood" parent="zombie" instance=ExtResource("3_orwns")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04748124, 1.513424, -0.1487155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04748124, 1.1178998, -0.45149097)
