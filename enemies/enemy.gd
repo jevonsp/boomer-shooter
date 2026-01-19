@@ -2,6 +2,7 @@ extends CharacterBody3D
 const SPEED = 1.0
 var hitpoints: int = 5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var blood: GPUParticles3D = $zombie/Blood
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -29,3 +30,8 @@ func move_to_player():
 	velocity.z = dir.z * SPEED
 	
 	look_at(flat_target, Vector3.UP)
+
+func blood_splatter():
+	blood.emitting = true
+	
+	

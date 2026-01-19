@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://52wq3qbacx45"]
+
+[ext_resource type="PackedScene" uid="uid://dqesq7vhcjapd" path="res://enemies/zombie.fbx" id="1_uur8n"]
+[ext_resource type="Texture2D" uid="uid://8uc5dk1treye" path="res://enemies/Texture.Zombie.png" id="2_ujw3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8iql"]
+albedo_texture = ExtResource("2_ujw3w")
+
+[node name="zombie" instance=ExtResource("1_uur8n")]
+
+[node name="Zombie" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_c8iql")

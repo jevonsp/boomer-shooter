@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw6w3voc584ml"]
+[gd_scene load_steps=6 format=3 uid="uid://cw6w3voc584ml"]
 
 [ext_resource type="Script" uid="uid://dtp33if6pf1tp" path="res://enemies/enemy.gd" id="1_fw1ev"]
-[ext_resource type="PackedScene" uid="uid://dqesq7vhcjapd" path="res://enemies/zombie.fbx" id="2_7frlh"]
+[ext_resource type="PackedScene" uid="uid://52wq3qbacx45" path="res://enemies/zombie.tscn" id="2_7frlh"]
+[ext_resource type="PackedScene" uid="uid://dfb3mrelx5j8s" path="res://enemies/blood.tscn" id="3_orwns"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x4ssu"]
 radius = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7frlh"]
+height = 1.5751953
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_fw1ev")
@@ -20,10 +22,12 @@ collision_mask = 11
 shape = SubResource("CapsuleShape3D_x4ssu")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="zombie" parent="." instance=ExtResource("2_7frlh")]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0.060143113, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78759766, 0)
 shape = SubResource("CapsuleShape3D_7frlh")
 debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="zombie" parent="." instance=ExtResource("2_7frlh")]
+
+[node name="Blood" parent="zombie" instance=ExtResource("3_orwns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04748124, 1.513424, -0.1487155)

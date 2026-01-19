@@ -85,7 +85,7 @@ func fire():
 	query.collide_with_areas = true
 	var collision = space.intersect_ray(query)
 	var from = muzzle.global_position
-	var to
+	var to = camera.global_position - camera.global_transform.basis.z * 100
 	if collision:
 		if collision.collider.is_in_group("enemy"):
 			var enemy_area_3d = collision.collider
@@ -93,11 +93,7 @@ func fire():
 			var amount = damage
 			enemy.take_damage(amount)
 			show_hitmarker.emit()
-		else:
-			print(collision.collider.name)
-		to = collision.position
-	else:
-		to = camera.global_position - camera.global_transform.basis.z * 100
+			enemy.blood_splatter()
 	make_bullet_trail(from, to)
 	activate_muzzle_flash()
 	play_shoot_animation()
