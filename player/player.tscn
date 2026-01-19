@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cddy4tbm5ogev" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dqiuu8hbmmijs" path="res://player/weapon_manager.gd" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://dycrthmqubi57" path="res://player/canvas_layer.gd" id="3_yw30f"]
-[ext_resource type="Texture2D" uid="uid://crqqo3jcq6ysb" path="res://weapons/Hit-Marker-PNG-Photo.png" id="4_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://crqqo3jcq6ysb" path="res://weapons/weapon_assets/Hit-Marker-PNG-Photo.png" id="4_qjkh3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kqu6x"]
 

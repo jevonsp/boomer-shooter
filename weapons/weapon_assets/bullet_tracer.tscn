@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://drhgwtbh3i4py"]
 
-[ext_resource type="Script" uid="uid://c6vn6m5xssntc" path="res://weapons/bullet_tracer.gd" id="1_gk3m3"]
+[ext_resource type="Script" uid="uid://c6vn6m5xssntc" path="res://weapons/weapon_assets/bullet_tracer.gd" id="1_gk3m3"]
 
 [sub_resource type="Gradient" id="Gradient_4r5f6"]
 offsets = PackedFloat32Array(0, 0.13068181, 0.77840906, 1)

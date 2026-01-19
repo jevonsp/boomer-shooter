@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qypf75gf2804"
-path.s3tc="res://.godot/imported/kenney-white-smoke-texture-cc0.png-1c54339ae74a59f00084ddc1e8e82761.s3tc.ctex"
+path.s3tc="res://.godot/imported/kenney-white-smoke-texture-cc0.png-0f47587aed6d95509fa120d91e9a45c8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://weapons/kenney-white-smoke-texture-cc0.png"
-dest_files=["res://.godot/imported/kenney-white-smoke-texture-cc0.png-1c54339ae74a59f00084ddc1e8e82761.s3tc.ctex"]
+source_file="res://weapons/weapon_assets/kenney-white-smoke-texture-cc0.png"
+dest_files=["res://.godot/imported/kenney-white-smoke-texture-cc0.png-0f47587aed6d95509fa120d91e9a45c8.s3tc.ctex"]
 
 [params]
 

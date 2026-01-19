@@ -2,7 +2,7 @@ extends Node3D
 class_name BaseWeapon
 signal show_hitmarker
 signal show_reload(value: bool)
-const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
+const BULLET_TRACER = preload("res://weapons/weapon_assets/bullet_tracer.tscn")
 @export var BULLET: PackedScene
 @export var damage: int = 1
 @export var clip_size: int = 6
@@ -10,14 +10,16 @@ const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
 @export var is_automatic: bool = false
 @export var shot_time: float = .3
 @export var bullet_size: float = 0.1
-var is_enabled: bool = false
+var is_enabled: bool = false:
+	set(value):
+		is_enabled = value
+		visible = is_enabled
 var has_ammo: bool = true
 var timer: float = 0.0
 var was_firing: bool = false
 var camera: Camera3D
 var line_mesh: MeshInstance3D
 var immediate_mesh: ImmediateMesh
-
 var current_ammo_count: int
 var is_reloading: bool = false
 @onready var player: CharacterBody3D = PlayerManager.player
@@ -26,6 +28,7 @@ var is_reloading: bool = false
 @onready var hit_marker: TextureRect = $CanvasLayer/Control/HitMarker
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var reload_label: Label = $CanvasLayer/Control/ReloadLabel
+
 func _ready() -> void:
 	line_mesh = MeshInstance3D.new()
 	immediate_mesh = ImmediateMesh.new()
@@ -33,7 +36,8 @@ func _ready() -> void:
 	add_child(line_mesh)
 	print(PlayerManager.player)
 	camera = PlayerManager.player.camera
-	
+	if not animation_player.animation_finished.is_connected(_on_animation_player_animation_finished):
+		animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 	set_stats()
 
 func _process(delta: float) -> void:
@@ -69,6 +73,8 @@ func fire():
 	if not is_enabled:
 		return
 	if not has_ammo:
+		return
+	if is_reloading:
 		return
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(
@@ -129,11 +135,13 @@ func reload():
 func play_reload_animation():
 	if is_reloading:
 		return
+	is_reloading = true
 	animation_player.play("Reload")
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"Reload":
+			print("reload finsihed")
 			is_reloading = false
 			has_ammo = true
 			show_reload.emit(false)

@@ -27,8 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_UP:
-				print("switch")
-				#switch_weapons()
+				weapon_manager.switch_weapons()
 	if InputManager.is_action_pressed("reload"):
 		weapon_manager.current_gun_equipped.reload()
 	

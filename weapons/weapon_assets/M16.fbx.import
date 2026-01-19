@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://daqv0812wlevk"
-path="res://.godot/imported/M1911.fbx-3b6967b9b78de6daf85cc239a0e554a0.scn"
+uid="uid://ckkcwc31tamo0"
+path="res://.godot/imported/M16.fbx-7431298d2de1d6a04aa54eeb4a15840f.scn"
 
 [deps]
 
-source_file="res://weapons/weapon_models/M1911.fbx"
-dest_files=["res://.godot/imported/M1911.fbx-3b6967b9b78de6daf85cc239a0e554a0.scn"]
+source_file="res://weapons/weapon_assets/M16.fbx"
+dest_files=["res://.godot/imported/M16.fbx-7431298d2de1d6a04aa54eeb4a15840f.scn"]
 
 [params]
 

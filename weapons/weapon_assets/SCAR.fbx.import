@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d0cl8etauq1su"
-path="res://.godot/imported/M4A1.fbx-86cb59dbc5164cc7a3f21074d47d9dfe.scn"
+uid="uid://dvqd7lq2n46w7"
+path="res://.godot/imported/SCAR.fbx-43783440c9abb4cf2fac232f5974c38f.scn"
 
 [deps]
 
-source_file="res://weapons/weapon_models/M4A1.fbx"
-dest_files=["res://.godot/imported/M4A1.fbx-86cb59dbc5164cc7a3f21074d47d9dfe.scn"]
+source_file="res://weapons/weapon_assets/SCAR.fbx"
+dest_files=["res://.godot/imported/SCAR.fbx-43783440c9abb4cf2fac232f5974c38f.scn"]
 
 [params]
 
