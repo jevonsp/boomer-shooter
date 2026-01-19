@@ -23,7 +23,6 @@ func _ready() -> void:
 	add_child(line_mesh)
 	camera = PlayerManager.player.camera
 	
-
 func fire():
 	if not is_enabled:
 		return

@@ -52,6 +52,7 @@ func clear_external_inventory() -> void:
 func on_inventory_interact(
 	inventory_data: InventoryData, index: int, button: int, shift_pressed: bool
 	) -> void:
+	print("invent got interact")
 	match [grabbed_slot_data, button]:
 		[null, MOUSE_BUTTON_LEFT]:
 			if shift_pressed:

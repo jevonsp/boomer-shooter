@@ -32,6 +32,7 @@ func create_weapons():
 				player.add_to_held(weapon)
 
 func _on_inventory_toggled(external_inventory_owner = null):
+	print("toggled invent")
 	inventory_interface.visible = !inventory_interface.visible
 	if inventory_interface.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

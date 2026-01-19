@@ -28,5 +28,6 @@ func _on_gui_input(event: InputEvent) -> void:
 			and (event.button_index == MOUSE_BUTTON_LEFT \
 			or event.button_index == MOUSE_BUTTON_RIGHT) \
 			and event.is_pressed():
+		print("gui input click=%s" % [event.button_index])
 		var shift_pressed = InputManager.is_action_pressed("shift")
 		slot_clicked.emit(get_index(), event.button_index, shift_pressed)
