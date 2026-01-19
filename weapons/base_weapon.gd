@@ -142,7 +142,6 @@ func play_reload_animation():
 	animation_player.play("Reload")
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	print("animation finished	")
 	match anim_name:
 		"Reload":
 			is_reloading = false
