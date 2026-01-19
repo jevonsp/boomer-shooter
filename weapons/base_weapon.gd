@@ -1,5 +1,7 @@
 extends Node3D
 class_name BaseWeapon
+signal show_hitmarker
+signal show_reload(value: bool)
 const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
 @export var BULLET: PackedScene
 @export var damage: int = 1
@@ -9,26 +11,13 @@ const BULLET_TRACER = preload("res://weapons/bullet_tracer.tscn")
 @export var shot_time: float = .3
 @export var bullet_size: float = 0.1
 var is_enabled: bool = false
-var has_ammo: bool = true:
-	set(value):
-		has_ammo = value
-		if value == false:
-			reload_label.visible = true
-		else:
-			reload_label.visible = false
+var has_ammo: bool = true
 var timer: float = 0.0
 var was_firing: bool = false
 var camera: Camera3D
 var line_mesh: MeshInstance3D
 var immediate_mesh: ImmediateMesh
-var hitmarker_visible: bool = false:
-	set(value):
-		hitmarker_visible = value
-		if value == true:
-			hit_marker.visible = true
-			await get_tree().create_timer(0.1).timeout
-			hitmarker_visible = false
-			hit_marker.visible = false
+
 var current_ammo_count: int
 var is_reloading: bool = false
 @onready var player: CharacterBody3D = PlayerManager.player
@@ -97,7 +86,7 @@ func fire():
 			var enemy = enemy_area_3d.get_parent()
 			var amount = damage
 			enemy.take_damage(amount)
-			hitmarker_visible = true
+			show_hitmarker.emit()
 		else:
 			print(collision.collider.name)
 		to = collision.position
@@ -111,6 +100,7 @@ func fire():
 	
 	if current_ammo_count <= 0:
 		has_ammo = false
+		show_reload.emit(true)
 	
 func activate_muzzle_flash():
 	muzzle_flash.emitting = true
@@ -146,3 +136,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		"Reload":
 			is_reloading = false
 			has_ammo = true
+			show_reload.emit(false)

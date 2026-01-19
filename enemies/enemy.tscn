@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dqesq7vhcjapd" path="res://enemies/zombie.fbx" id="2_7frlh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x4ssu"]
+radius = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7frlh"]
 
