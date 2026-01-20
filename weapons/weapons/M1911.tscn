@@ -824,6 +824,7 @@ _data = {
 script = ExtResource("1_g61sl")
 damage = 5
 reload_time = 0.5
+piercing_factor = 1
 
 [node name="Model" type="Node3D" parent="."]
 

@@ -697,33 +697,119 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Model/M16/Cube_006:position")
+tracks/6/path = NodePath("Model/M16/Cube_006:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-1.5707964, 1.629207e-07, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Model/M16/Cube_006:rotation")
+tracks/7/path = NodePath("Model/M16:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-1.5707964, 1.629207e-07, 0)]
+"values": [Vector3(0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Model/M16:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Model/M16/Cube_006:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -2.7640676, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3fcx8"]
 resource_name = "Reload"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/M16:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.7144451, 0, -1.0681769), Vector3(0.7144451, 0, -1.0681769), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/M16:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.13962634, 0.4537856, -0.2617994), Vector3(0.13962634, 0.4537856, -0.2617994), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Model/M16/Cube_006:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -2.7640676, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_g61sl"]
 resource_name = "Shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/M16:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.005, 0.005, 0.005), Vector3(0.005, -0.005, -0.005), Vector3(0.005, -0.005, 0.005)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Model/M16:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.017453292), Vector3(0, 0, 0.017453292), Vector3(0, 0, -0.017453292)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_drkv3"]
 _data = {
@@ -745,7 +831,7 @@ shot_time = 0.35
 transform = Transform3D(0.9988534, 0, 0.047873527, 0, 1, 0, -0.047873527, 0, 0.9988534, 0.34936035, -0.079116225, -0.0010352731)
 
 [node name="M16" type="Node3D" parent="Model"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+transform = Transform3D(0.25000024, 0, 0, 0, 0.24999997, 0, 0, 0, 0.25000018, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="Model/M16"]
 transform = Transform3D(100, -1.629207e-05, 0, 0, 0, 100, -1.629207e-05, -100, 0, 0, 0, 0)
@@ -783,7 +869,7 @@ mesh = SubResource("ArrayMesh_wfhiv")
 skeleton = NodePath("")
 
 [node name="Cube_006" type="MeshInstance3D" parent="Model/M16"]
-transform = Transform3D(100, -1.629207e-05, -7.12149e-13, 0, -4.371139e-06, 100, -1.629207e-05, -100, -4.371139e-06, 0, 0, 0)
+transform = Transform3D(100, -1.629207e-05, -7.12149e-13, 0, -4.371139e-06, 100, -1.629207e-05, -100, -4.371139e-06, 0, -2.7640676, 0)
 mesh = SubResource("ArrayMesh_ljd7s")
 skeleton = NodePath("")
 

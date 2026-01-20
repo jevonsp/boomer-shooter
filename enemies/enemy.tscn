@@ -1,16 +1,12 @@
-[gd_scene load_steps=17 format=4 uid="uid://cw6w3voc584ml"]
+[gd_scene load_steps=16 format=4 uid="uid://cw6w3voc584ml"]
 
 [ext_resource type="Script" uid="uid://dtp33if6pf1tp" path="res://enemies/enemy.gd" id="1_fw1ev"]
 [ext_resource type="Script" uid="uid://dmrtqsqidalw2" path="res://enemies/model.gd" id="2_orwns"]
 [ext_resource type="Texture2D" uid="uid://8uc5dk1treye" path="res://enemies/Texture.Zombie.png" id="3_a6vjd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x4ssu"]
-radius = 0.43115234
-height = 1.6035156
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_07tka"]
-radius = 0.296875
-height = 0.59375
+radius = 0.64160156
+height = 1.6601563
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7frlh"]
 height = 1.5751953
@@ -1091,15 +1087,8 @@ collision_layer = 8
 collision_mask = 11
 
 [node name="Body" type="CollisionShape3D" parent="EnemyArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19824219, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16992188, 0)
 shape = SubResource("CapsuleShape3D_x4ssu")
-debug_color = Color(3.657937e-06, 0.58728784, 0.7627086, 0.41960785)
-
-[node name="Arms" type="CollisionShape3D" parent="EnemyArea3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13534641, -0.5682276)
-visible = false
-shape = SubResource("CapsuleShape3D_07tka")
 debug_color = Color(3.657937e-06, 0.58728784, 0.7627086, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -1318,6 +1307,8 @@ libraries = {
 [node name="AttackHitbox" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
+monitoring = false
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)

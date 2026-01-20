@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ui18rp0mk16a"]
+
+[ext_resource type="PackedScene" uid="uid://cw6w3voc584ml" path="res://enemies/enemy.tscn" id="1_r2k6b"]
+[ext_resource type="PackedScene" uid="uid://cgyv8i8ecq0i6" path="res://weapons/pickups/pickup.tscn" id="2_w3asx"]
+[ext_resource type="PackedScene" uid="uid://bffi8vyjc2t7c" path="res://weapons/weapons/M1911.tscn" id="3_fpjtb"]
+[ext_resource type="PackedScene" uid="uid://cptde1sxjuv1r" path="res://weapons/weapons/MP5.tscn" id="4_8ouho"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bc83"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ekp6a"]
+size = Vector3(20, 0.1, 20)
+
+[node name="TestScene" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1bc83")
+
+[node name="Floor" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Floor"]
+shape = SubResource("BoxShape3D_ekp6a")
+
+[node name="Enemy" parent="." instance=ExtResource("1_r2k6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.393941)
+
+[node name="Enemy2" parent="." instance=ExtResource("1_r2k6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5.393941)
+
+[node name="Enemy3" parent="." instance=ExtResource("1_r2k6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -5.393941)
+
+[node name="Enemy4" parent="." instance=ExtResource("1_r2k6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5.393941)
+
+[node name="M4A1" parent="." instance=ExtResource("2_w3asx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6466234, 1, 4)
+
+[node name="M1911" parent="." instance=ExtResource("2_w3asx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+weapon_index = 2
+scene = ExtResource("3_fpjtb")
+
+[node name="MP5" parent="." instance=ExtResource("2_w3asx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.165141, 1, 4)
+scene = ExtResource("4_8ouho")
