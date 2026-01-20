@@ -19,7 +19,6 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-		
 	if InputManager.is_action_pressed("inventory"):
 		toggle_inventory.emit()
 	if InputManager.is_action_pressed("interact"):
@@ -30,6 +29,10 @@ func _unhandled_input(event: InputEvent) -> void:
 				weapon_manager.switch_weapons()
 	if InputManager.is_action_pressed("reload"):
 		weapon_manager.current_gun_equipped.reload()
+	if InputManager.is_action_pressed("primary_weapon"):
+		weapon_manager.switch_weapon_to(1)
+	if InputManager.is_action_pressed("secondary_weapon"):
+		weapon_manager.switch_weapon_to(2)
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

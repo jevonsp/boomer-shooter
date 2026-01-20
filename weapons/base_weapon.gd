@@ -34,7 +34,6 @@ func _ready() -> void:
 	immediate_mesh = ImmediateMesh.new()
 	line_mesh.mesh = immediate_mesh
 	add_child(line_mesh)
-	print(PlayerManager.player)
 	camera = PlayerManager.player.camera
 	if not animation_player.animation_finished.is_connected(_on_animation_player_animation_finished):
 		animation_player.animation_finished.connect(_on_animation_player_animation_finished)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ygmmpbvex3v"]
+
+[ext_resource type="PackedScene" uid="uid://v048lkke6e51" path="res://weapons/weapon_assets/MP5.fbx" id="1_i8b50"]
+
+[node name="MP5" instance=ExtResource("1_i8b50")]

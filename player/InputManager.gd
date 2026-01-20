@@ -1,15 +1,19 @@
 extends Node
-
 const CONFIG_PATH = "user://keybinds.cfg"
-
 var keybinds = {}
+var _previous_state = {}
 
 func _ready() -> void:
 	add_to_group("can_save")
 	load_keybinds()
 
-func setup_defaults():
-	keybinds = { "forward": [KEY_W],
+func _process(_delta: float) -> void:
+	# Update previous state each frame
+	for action in keybinds.keys():
+		_previous_state[action] = is_action_pressed(action)
+
+func get_default_keybinds():
+	return { "forward": [KEY_W],
 				"left": [KEY_A],
 				"back": [KEY_S],
 				"right": [KEY_D],
@@ -21,17 +25,29 @@ func setup_defaults():
 				"inventory": [KEY_TAB],
 				"shift": [KEY_SHIFT],
 				"control": [KEY_CTRL],
-				"switch_weapons" :[MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_LEFT]}
+				"switch_weapons" :[MOUSE_BUTTON_WHEEL_DOWN, MOUSE_BUTTON_WHEEL_LEFT],
+				"primary_weapon": [KEY_1],
+				"secondary_weapon": [KEY_2]}
 
 func is_action_pressed(action: String) -> bool:
 	for key in keybinds.get(action, []):
-		if Input.is_key_pressed(key):
-			return true
+		if key >= MOUSE_BUTTON_LEFT and key <= MOUSE_BUTTON_WHEEL_RIGHT:
+			if Input.is_mouse_button_pressed(key):
+				return true
+		else:
+			if Input.is_key_pressed(key):
+				return true
 	return false
 
-func rebind_action(action: String, new_key: int):
-	keybinds[action] = new_key
+func is_action_just_pressed(action: String) -> bool:
+	var currently_pressed = is_action_pressed(action)
+	var was_pressed = _previous_state.get(action, false)
+	return currently_pressed and not was_pressed
 
+func rebind_action(action: String, new_key: int):
+	keybinds[action] = [new_key]
+	save_keybinds()
+	
 func save_keybinds():
 	var config = ConfigFile.new()
 	for action in keybinds.keys():
@@ -46,24 +62,36 @@ func save_keybinds():
 		push_error("Failed to save keybinds: %s" % error_string(err))
 
 func load_keybinds():
+	var defaults = get_default_keybinds()
+	keybinds = defaults.duplicate()
+	
 	var config = ConfigFile.new()
 	var err = config.load(CONFIG_PATH)
 	
 	if err != OK:
-		setup_defaults()
 		save_keybinds()
 		return
 		
-	keybinds = {}
-	if config.has_section("keybinds"):
-		for action in config.get_section_keys("keybinds"):
-			var key_string = config.get_value("keybinds", action)
+	if not config.has_section("keybinds"):
+		save_keybinds()
+		return
+
+	var needs_save: bool = false
+
+	for action in defaults.keys():
+		if config.has_section_key("keybinds", action):
+			var key_string: String = config.get_value("keybinds", action)
 			var keys: Array[int] = []
-			
+	
 			for key_str in key_string.split(",", false):
 				if key_str.is_valid_int():
 					keys.append(int(key_str))
 			
-			keybinds[action] = keys
-		
-		print(keybinds)
+			if not keys.is_empty():
+				keybinds[action] = keys
+				
+		else:
+			needs_save = true
+			
+	if needs_save:
+		save_keybinds()

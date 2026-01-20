@@ -1,13 +1,11 @@
 extends CharacterBody3D
 const BLOOD = preload("res://enemies/blood.tscn")
 const SPEED = 1.0
-var hitpoints: int = 1000
+@export var hitpoints: int = 5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		print(gravity)
 		velocity.y -= gravity * delta
 		
 	move_to_player()
