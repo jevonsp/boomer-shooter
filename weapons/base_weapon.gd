@@ -2,10 +2,11 @@ extends Node3D
 class_name BaseWeapon
 signal show_hitmarker
 signal show_reload(value: bool)
+signal update_ammo(current_ammo: int, max_ammo: int)
 const BULLET_TRACER = preload("res://weapons/weapon_assets/bullet_tracer.tscn")
 @export var BULLET: PackedScene
 @export var damage: int = 1
-@export var clip_size: int = 6
+@export var max_ammo_count: int = 6
 @export var reload_time: float = 1.0
 @export var is_automatic: bool = false
 @export var shot_time: float = .1
@@ -64,8 +65,9 @@ func _input(event):
 				fire()
 				
 func set_stats():
-	current_ammo_count = clip_size
-				
+	current_ammo_count = max_ammo_count
+	update_ammo.emit(current_ammo_count, max_ammo_count)
+	
 func fire():
 	if not is_enabled:
 		return
@@ -96,6 +98,7 @@ func fire():
 	play_shoot_animation()
 	
 	current_ammo_count -= 1
+	update_ammo.emit(current_ammo_count, max_ammo_count)
 	
 	if current_ammo_count <= 0:
 		has_ammo = false
@@ -123,7 +126,7 @@ func reload():
 	print("reload called")
 	play_reload_animation()
 	is_reloading = true
-	current_ammo_count = clip_size
+	current_ammo_count = max_ammo_count
 	
 func play_reload_animation():
 	if is_reloading:
@@ -138,3 +141,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			is_reloading = false
 			has_ammo = true
 			show_reload.emit(false)
+			update_ammo.emit(current_ammo_count, max_ammo_count)

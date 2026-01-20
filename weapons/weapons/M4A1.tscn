@@ -537,7 +537,7 @@ _data = {
 [node name="M4A1" type="Node3D"]
 script = ExtResource("1_igjfi")
 damage = 3
-clip_size = 30
+max_ammo_count = 30
 is_automatic = true
 shot_time = 0.2
 bullet_size = 0.2

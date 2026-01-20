@@ -17,7 +17,6 @@ _data = {
 
 [node name="BaseWeapon" type="Node3D"]
 script = ExtResource("1_xvpeq")
-clip_size = 30
 is_automatic = true
 
 [node name="Model" type="Node3D" parent="."]
