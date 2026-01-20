@@ -1,20 +1,30 @@
 extends CharacterBody3D
 signal toggle_inventory
+signal update_health(current_health: int, max_health: int)
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var health: int
+var current_health: int
 var max_health: int = 5
 @onready var camera: Camera3D = $Camera3D
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 @onready var weapon_manager: Marker3D = $Camera3D/WeaponManager
 @onready var shoot_point: Marker3D = $Camera3D/ShootPoint
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 func _ready() -> void:
-	health = max_health
+	connect_signals()
+	setup_player()
+	
+func connect_signals() -> void:
+	update_health.connect(canvas_layer.update_health)
+	
+func setup_player() -> void:
+	current_health = max_health
 	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	weapon_manager.setup_weapons()
+	update_health.emit(current_health, max_health)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -92,7 +102,9 @@ func interact() -> void:
 	if interact_ray.is_colliding():
 		interact_ray.get_collider().player_interact()
 
+func take_damage(amount) -> void:
+	current_health = max(0, current_health - amount)
+	update_health.emit(current_health, max_health)
+
 func heal(amount) -> void:
-	print("healing for %s" % [amount])
-	health = min(health + amount, max_health)
-	print("health now %s" % [health])
+	current_health = min(current_health + amount, max_health)

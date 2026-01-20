@@ -123,7 +123,6 @@ func play_shoot_animation():
 	animation_player.play("Shoot")
 	
 func reload():
-	print("reload called")
 	play_reload_animation()
 	is_reloading = true
 	current_ammo_count = max_ammo_count
@@ -133,12 +132,15 @@ func play_reload_animation():
 		return
 	is_reloading = true
 	animation_player.play("Reload")
+	var default_length = animation_player.current_animation_length
+	var speed_scale = default_length / reload_time
+	animation_player.speed_scale = speed_scale
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"Reload":
-			print("reload finsihed")
 			is_reloading = false
 			has_ammo = true
 			show_reload.emit(false)
 			update_ammo.emit(current_ammo_count, max_ammo_count)
+	animation_player.speed_scale = 1.0

@@ -538,6 +538,7 @@ _data = {
 script = ExtResource("1_igjfi")
 damage = 3
 max_ammo_count = 30
+reload_time = 2.0
 is_automatic = true
 shot_time = 0.2
 bullet_size = 0.2

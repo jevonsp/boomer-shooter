@@ -811,6 +811,7 @@ _data = {
 script = ExtResource("1_dcth4")
 damage = 2
 max_ammo_count = 40
+reload_time = 1.5
 is_automatic = true
 
 [node name="Model" type="Node3D" parent="."]
