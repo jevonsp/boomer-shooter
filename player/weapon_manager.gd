@@ -46,3 +46,22 @@ func switch_weapon_to(index: int):
 		2: current_gun_equipped = secondary_weapon
 	current_gun_equipped.is_enabled = true
 	print("current=%s" % [current_gun_equipped.name])
+
+func replace_weapon(weapon_index: int, scene):
+	current_gun_equipped.is_enabled = false
+	match weapon_index:
+		1:
+			remove(primary_weapon)
+			primary_weapon = create_weapon(scene)
+			connect_weapon(primary_weapon)
+			current_gun_equipped = primary_weapon
+		2:
+			remove(secondary_weapon)
+			secondary_weapon = create_weapon(scene)
+			connect_weapon(secondary_weapon)
+			current_gun_equipped = secondary_weapon
+			
+	current_gun_equipped.is_enabled = true
+			
+func remove(weapon: BaseWeapon):
+	weapon.queue_free()
