@@ -467,9 +467,9 @@ tracks/0/path = NodePath("Model/M4A1:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.025000002, 0, 0, 0, 0, -0.025000002, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0.046382785, -0.025000002, -0.0077304645, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -478,9 +478,9 @@ tracks/1/path = NodePath("Model/M4A1:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.025000002, 0, 0, 0, 0, -0.025000002, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0.019847274, -0.025000002, -0.0033078792, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -489,9 +489,9 @@ tracks/2/path = NodePath("Model/M4A1:position:z")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(0.67145133, -0.25, 0, 0.25, 0, 0.7594385, -0.025000002, -0.014664532, 0, 0, 0.671, -0.025000002, 0.014739753, 0, 0),
-"times": PackedFloat32Array(0, 0.15, 0.3)
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(0.67145133, -0.15, 0, 0.15, 0, 0.67145133, -0.025000002, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.15)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -500,8 +500,8 @@ tracks/3/path = NodePath("Model/M4A1:rotation:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.1200612, -0.025000002, 0.020010201, 0, 0, 0, -0.025000002, -0.020010201, 0, 0),
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, -0.029670598, -0.025000002, 0.0049451, 0, 0, 0, -0.025000002, -0.0049451, 0, 0),
 "times": PackedFloat32Array(0, 0.15, 0.3)
 }
 tracks/4/type = "bezier"
@@ -511,8 +511,8 @@ tracks/4/path = NodePath("Model/M4A1:rotation:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(-3.1415925, -0.25, 0, 0.25, 0, -3.1415925, -0.025000002, 0, 0, 0, -3.1415927, -0.025000002, 3.973643e-08, 0, 0),
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(3.1415927, -0.15, 0, 0.15, 0, 3.1415927, -0.025000002, 0, 0, 0, 3.1415927, -0.025000002, 0, 0, 0),
 "times": PackedFloat32Array(0, 0.15, 0.3)
 }
 tracks/5/type = "bezier"
@@ -522,8 +522,8 @@ tracks/5/path = NodePath("Model/M4A1:rotation:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.8216348e-08, -0.025000002, 3.036058e-09, 0, 0, 0, -0.025000002, -3.036058e-09, 0, 0),
+"handle_modes": PackedInt32Array(2, 2, 2),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 0.07853982, -0.025000002, -0.013089971, 0, 0, 0, -0.025000002, 0.013089971, 0, 0),
 "times": PackedFloat32Array(0, 0.15, 0.3)
 }
 
@@ -546,7 +546,7 @@ bullet_size = 0.2
 [node name="Model" type="Node3D" parent="."]
 
 [node name="M4A1" type="Node3D" parent="Model"]
-transform = Transform3D(-0.24999996, 0, -3.7748947e-08, 0, 0.24999993, 0, 3.7748944e-08, 0, -0.24999997, 0, 0, 0.67145133)
+transform = Transform3D(-0.2499999, 0, -3.7748947e-08, 0, 0.24999999, 0, 3.7748936e-08, 0, -0.24999997, 0, 0, 0.67145133)
 
 [node name="Body" type="MeshInstance3D" parent="Model/M4A1"]
 transform = Transform3D(-0.0023841858, -10000, 0, 0, 0, 10000, -10000, 0.0017881393, 0, 0, 0, 1.6698421)

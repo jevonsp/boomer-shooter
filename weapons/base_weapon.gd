@@ -9,7 +9,10 @@ const BULLET_TRACER = preload("res://weapons/weapon_assets/bullet_tracer.tscn")
 @export var max_ammo_count: int = 6
 @export var reload_time: float = 1.0
 @export var is_automatic: bool = false
+@export var is_burst: bool = false
+@export var burst_amount: int = 3
 @export var shot_time: float = .1
+@export var piercing_factor: int = 0
 @export var bullet_size: float = 0.1
 var is_enabled: bool = false:
 	set(value):
@@ -85,18 +88,25 @@ func fire():
 	var collision = space.intersect_ray(query)
 	var from = muzzle.global_position
 	var to = camera.global_position - camera.global_transform.basis.z * 100
+	if is_burst:
+		for i in range(burst_amount):
+				make_bullet_trail(from, to)
+				activate_muzzle_flash()
+				play_shoot_animation()
+				await get_tree().create_timer(.05).timeout
+	else:
+		make_bullet_trail(from, to)
+		activate_muzzle_flash()
+		play_shoot_animation()
 	if collision:
 		if collision.collider.is_in_group("enemy"):
+			print(collision.collider.get_parent().name)
 			var enemy_area_3d = collision.collider
 			var enemy = enemy_area_3d.get_parent()
 			var amount = damage
 			enemy.take_damage(amount)
 			show_hitmarker.emit()
 			enemy.blood_splatter()
-	make_bullet_trail(from, to)
-	activate_muzzle_flash()
-	play_shoot_animation()
-	
 	current_ammo_count -= 1
 	update_ammo.emit(current_ammo_count, max_ammo_count)
 	

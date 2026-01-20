@@ -3,6 +3,7 @@ signal reset_labels
 const PISTOL = preload("res://weapons/weapons/M1911.tscn")
 const RIFLE = preload("res://weapons/weapons/M4A1.tscn")
 const SMG = preload("res://weapons/weapons/MP5.tscn")
+const M16 = preload("res://weapons/weapons/M16.tscn")
 @onready var canvas_layer: CanvasLayer = $"../../CanvasLayer"
 var current_gun_equipped: BaseWeapon:
 	set(value):
@@ -20,7 +21,7 @@ func connect_signals():
 	reset_labels.connect(canvas_layer.reset_labels)
 
 func setup_weapons():
-	primary_weapon = create_weapon(SMG)
+	primary_weapon = create_weapon(M16)
 	secondary_weapon = create_weapon(PISTOL)
 	secondary_weapon.is_enabled = false
 	current_gun_equipped = primary_weapon
