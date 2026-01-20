@@ -9,3 +9,6 @@ func show_hitmarker():
 	
 func show_reload(value: bool):
 	reload_label.visible = value
+
+func reset_labels():
+	reload_label.visible = false

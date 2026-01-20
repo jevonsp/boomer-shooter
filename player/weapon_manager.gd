@@ -1,12 +1,18 @@
 extends Marker3D
+signal reset_labels
 const PISTOL = preload("res://weapons/weapons/M1911.tscn")
 const RIFLE = preload("res://weapons/weapons/M4A1.tscn")
 const SMG = preload("res://weapons/weapons/MP5.tscn")
 @onready var canvas_layer: CanvasLayer = $"../../CanvasLayer"
-
 var current_gun_equipped: BaseWeapon
 var primary_weapon: BaseWeapon
 var secondary_weapon: BaseWeapon
+
+func _ready() -> void:
+	connect_signals()
+	
+func connect_signals():
+	reset_labels.connect(canvas_layer.reset_labels)
 
 func setup_weapons():
 	primary_weapon = create_weapon(SMG)
@@ -29,23 +35,21 @@ func connect_weapon(weapon: BaseWeapon):
 		weapon.show_reload.connect(canvas_layer.show_reload)
 
 func switch_weapons():
-	current_gun_equipped.is_enabled = false
-	
 	if current_gun_equipped == primary_weapon:
-		current_gun_equipped = secondary_weapon
+		switch_weapon_to(2)
 	else:
-		current_gun_equipped = primary_weapon
-		
-	current_gun_equipped.is_enabled = true
-	print("current=%s" % [current_gun_equipped.name])
+		switch_weapon_to(1)
 
 func switch_weapon_to(index: int):
+	reset_labels.emit()
 	current_gun_equipped.is_enabled = false
 	match index:
 		1: current_gun_equipped = primary_weapon
 		2: current_gun_equipped = secondary_weapon
 	current_gun_equipped.is_enabled = true
 	print("current=%s" % [current_gun_equipped.name])
+	if not current_gun_equipped.has_ammo:
+		current_gun_equipped.show_reload.emit(true)
 
 func replace_weapon(weapon_index: int, scene):
 	current_gun_equipped.is_enabled = false

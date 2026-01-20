@@ -25,9 +25,7 @@ var is_reloading: bool = false
 @onready var player: CharacterBody3D = PlayerManager.player
 @onready var muzzle: Marker3D = $Marker3D
 @onready var muzzle_flash: GPUParticles3D = $Marker3D/MuzzleFlash
-@onready var hit_marker: TextureRect = $CanvasLayer/Control/HitMarker
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var reload_label: Label = $CanvasLayer/Control/ReloadLabel
 
 func _ready() -> void:
 	line_mesh = MeshInstance3D.new()

@@ -1,8 +1,7 @@
-[gd_scene load_steps=42 format=4 uid="uid://bffi8vyjc2t7c"]
+[gd_scene load_steps=41 format=4 uid="uid://bffi8vyjc2t7c"]
 
 [ext_resource type="Script" uid="uid://bmidfqiy10h5g" path="res://weapons/base_weapon.gd" id="1_g61sl"]
 [ext_resource type="PackedScene" uid="uid://brnph4das8y21" path="res://weapons/weapon_assets/muzzle_flash.tscn" id="1_o51o1"]
-[ext_resource type="Texture2D" uid="uid://crqqo3jcq6ysb" path="res://weapons/weapon_assets/Hit-Marker-PNG-Photo.png" id="2_g61sl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1uaf"]
 resource_name = "Mat_Dark"
@@ -914,54 +913,6 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29587653, -0.62439454)
 
 [node name="MuzzleFlash" parent="Marker3D" instance=ExtResource("1_o51o1")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="HitMarker" type="TextureRect" parent="CanvasLayer/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-pivot_offset = Vector2(256, 256)
-texture = ExtResource("2_g61sl")
-
-[node name="ReloadLabel" type="Label" parent="CanvasLayer/Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-text = "reload"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
