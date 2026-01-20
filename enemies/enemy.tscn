@@ -11,6 +11,7 @@ height = 1.5751953
 
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_fw1ev")
+hitpoints = 25
 
 [node name="EnemyArea3D" type="Area3D" parent="." groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -26,4 +27,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78759766, 0)
 shape = SubResource("CapsuleShape3D_7frlh")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[node name="zombie" parent="." instance=ExtResource("2_7frlh")]
+[node name="Model" parent="." instance=ExtResource("2_7frlh")]

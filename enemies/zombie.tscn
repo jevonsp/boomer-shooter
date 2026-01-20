@@ -1,12 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://52wq3qbacx45"]
+[gd_scene load_steps=5 format=3 uid="uid://52wq3qbacx45"]
 
 [ext_resource type="PackedScene" uid="uid://dqesq7vhcjapd" path="res://enemies/zombie.fbx" id="1_uur8n"]
+[ext_resource type="Script" uid="uid://dmrtqsqidalw2" path="res://enemies/model.gd" id="2_c8iql"]
 [ext_resource type="Texture2D" uid="uid://8uc5dk1treye" path="res://enemies/Texture.Zombie.png" id="2_ujw3w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8iql"]
 albedo_texture = ExtResource("2_ujw3w")
 
 [node name="zombie" instance=ExtResource("1_uur8n")]
+script = ExtResource("2_c8iql")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/rotation = Quaternion(9.415697e-08, 0.7071068, 0.7071067, 9.415697e-08)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(0.091648415, -0.0041814777, -0.045385584, 0.9947479)
+bones/2/rotation = Quaternion(-0.03921469, 1.1044643e-10, 6.679381e-09, 0.9992308)
+bones/3/rotation = Quaternion(0.23570618, -0.100830875, -0.7551154, 0.60338753)
+bones/3/scale = Vector3(0.99999994, 0.99999994, 0.99999994)
+bones/4/rotation = Quaternion(0.38801235, -0.033946056, 0.31533897, 0.8653643)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.24849202, -0.048644856, -0.11782768, 0.9602094)
+bones/5/scale = Vector3(1.0000001, 0.99999994, 1)
+bones/7/rotation = Quaternion(-0.023225334, 2.66259e-10, 5.4722737e-09, 0.99973035)
+bones/9/rotation = Quaternion(0.26980135, 0.16278516, 0.81260514, 0.49028704)
+bones/9/scale = Vector3(1, 1.0000001, 1)
+bones/10/rotation = Quaternion(0.3041035, -0.0028508059, -0.2232543, 0.9261051)
+bones/10/scale = Vector3(0.99999994, 0.9999999, 1)
+bones/11/rotation = Quaternion(0.28819877, 0.010426481, 0.016547903, 0.95737094)
+bones/11/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/13/rotation = Quaternion(-0.78013784, 0.013958261, -0.036505178, 0.6243857)
+bones/13/scale = Vector3(1.0000001, 1.0000002, 1.0000001)
+bones/14/rotation = Quaternion(-0.2872313, 1.0986922e-07, -3.5731794e-08, 0.9578613)
+bones/18/position = Vector3(-0.19012712, -0.19617945, 0.07161337)
+bones/18/rotation = Quaternion(0.9989695, -7.430947e-08, -7.212981e-08, -0.04538731)
+bones/18/scale = Vector3(1, 1, 0.99999046)
+bones/20/rotation = Quaternion(-0.29721686, 0.015607446, -0.013384006, 0.95458865)
+bones/21/rotation = Quaternion(-0.37308404, -1.126765e-07, -6.813289e-08, 0.9277976)
+bones/25/rotation = Quaternion(0.9989695, -8.116343e-08, 7.870745e-08, -0.04538731)
+bones/25/scale = Vector3(1, 1, 0.99999046)
 
 [node name="Zombie" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_c8iql")
