@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	var is_firing = is_automatic and \
 		Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and \
 		Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT)
-		
+
 	if is_firing:
 		if not was_firing:
 			fire()
@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 		if timer >= shot_time:
 			fire()
 			timer = 0.0
-		
+
 	was_firing = is_firing
 
 func _input(event):
@@ -73,13 +73,13 @@ func _input(event):
 		return
 	if event is InputEventMouseButton and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event.is_pressed():
 		match event.button_index:
-			2: 
+			2:
 				fire()
-				
+
 func set_stats():
 	current_ammo_count = max_ammo_count
 	update_ammo.emit(current_ammo_count, max_ammo_count)
-	
+
 func fire():
 	if not is_enabled:
 		return
@@ -89,35 +89,35 @@ func fire():
 		return
 	if is_firing_burst:
 		return
-	
+
 	var from = PlayerManager.player.camera.global_position
 	var to = camera.global_position - camera.global_transform.basis.z * 100
-	
+
 	var hit_positions = perform_piercing_raycast(from, to, piercing_factor)
-	
+
 	if is_burst:
 		is_firing_burst = true
 		consume_ammo()
-		
+
 		for i in range(burst_amount):
 			if is_reloading:
 				break
-				
+
 			if hit_positions.size() > 0:
 				make_bullet_trail(muzzle.global_position, hit_positions[-1])
 			else:
 				make_bullet_trail(muzzle.global_position, to)
-			
+
 			activate_muzzle_flash()
 			play_shoot_animation()
-			
+
 			if i < burst_amount - 1:
 				await get_tree().create_timer(shot_time / 2.0).timeout
-				
+
 		is_firing_burst = false
 	else:
 		consume_ammo()
-		
+
 		make_bullet_trail(muzzle.global_position,
 			hit_positions[-1] if hit_positions.size() > 0 else to)
 		activate_muzzle_flash()
@@ -130,7 +130,7 @@ func perform_piercing_raycast(from: Vector3, to: Vector3, max_pierces: int) -> A
 	var current_from = from
 	var hit_positions: Array[Vector3] = []
 	var hit_bodies: Array[RID] = []
-	
+
 	for i in range(max_pierces + 1):
 		var query = PhysicsRayQueryParameters3D.create(
 			current_from,
@@ -138,30 +138,38 @@ func perform_piercing_raycast(from: Vector3, to: Vector3, max_pierces: int) -> A
 		)
 		query.collision_mask = (1 << 0) | (1 << 3)
 		query.collide_with_areas = true
-		
+
 		for body_rid in hit_bodies:
 			query.exclude.append(body_rid)
-		
+
 		var collision = space.intersect_ray(query)
 		if not collision:
 			break
-		
+
 		var hit_distance = (collision.position - current_from).length()
 		remaining_range -= hit_distance
 		if remaining_range <= 0:
 			break
-		
+
 		hit_positions.append(collision.position)
 		hit_bodies.append(collision.collider.get_rid())
-		
+
 		if collision.collider.is_in_group("enemy"):
+			var shape_owner = collision.collider.shape_find_owner(collision.shape)
+			var shape_node = collision.collider.shape_owner_get_owner(shape_owner)
+
+			var actual_damage = damage
+			if shape_node.name == "Head":
+				actual_damage *= 2
+
 			var enemy = collision.collider.get_parent()
-			enemy.take_damage(damage)
+
+			enemy.take_damage(actual_damage)
 			show_hitmarker.emit()
 			enemy.blood_splatter()
-		
-		current_from = collision.position + ray_direction * 0.01 
-	
+
+		current_from = collision.position + ray_direction * 0.01
+
 	return hit_positions
 
 func consume_ammo():
@@ -171,19 +179,19 @@ func consume_ammo():
 	else:
 		consumption = ammo_consumption_per_shot
 	current_ammo_count -= consumption
-	
+
 	if current_ammo_count < 0:
 		current_ammo_count = 0
-	
+
 	update_ammo.emit(current_ammo_count, max_ammo_count)
-	
+
 	if current_ammo_count <= 0:
 		has_ammo = false
 		show_reload.emit(true)
 
 func activate_muzzle_flash():
 	muzzle_flash.emitting = true
-	
+
 func make_bullet_trail(from: Vector3, to: Vector3):
 	var bullet_dir = (to - muzzle.global_position).normalized()
 	var start_pos = from + bullet_dir * 0.25
@@ -198,12 +206,12 @@ func play_shoot_animation():
 	if animation_player.is_playing():
 		animation_player.play("RESET")
 	animation_player.play("Shoot")
-	
+
 func reload():
 	if is_reloading or is_firing_burst:
 		return
 	play_reload_animation()
-	
+
 func play_reload_animation():
 	if is_reloading:
 		return
@@ -213,7 +221,7 @@ func play_reload_animation():
 	var default_length = animation_player.current_animation_length
 	var speed_scale = default_length / reload_time
 	animation_player.speed_scale = speed_scale
-	
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"Reload":
