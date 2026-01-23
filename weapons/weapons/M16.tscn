@@ -820,7 +820,7 @@ _data = {
 
 [node name="M16" type="Node3D"]
 script = ExtResource("1_jspwq")
-damage = 3
+damage = 5
 max_ammo_count = 39
 reload_time = 2.0
 is_automatic = true

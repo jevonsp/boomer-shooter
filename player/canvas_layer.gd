@@ -8,7 +8,7 @@ func show_hitmarker():
 	hit_marker.visible = true
 	await get_tree().create_timer(0.1).timeout
 	hit_marker.visible = false
-	
+
 func show_reload(value: bool):
 	reload_label.visible = value
 

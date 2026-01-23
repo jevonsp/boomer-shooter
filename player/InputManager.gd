@@ -47,16 +47,16 @@ func is_action_just_pressed(action: String) -> bool:
 func rebind_action(action: String, new_key: int):
 	keybinds[action] = [new_key]
 	save_keybinds()
-	
+
 func save_keybinds():
 	var config = ConfigFile.new()
 	for action in keybinds.keys():
 		var key_strings: Array[String] = []
 		for key in keybinds[action]:
 			key_strings.append(str(key))
-		
+
 		config.set_value("keybinds", action, ",".join(key_strings))
-		
+
 	var err = config.save(CONFIG_PATH)
 	if err != OK:
 		push_error("Failed to save keybinds: %s" % error_string(err))
@@ -64,14 +64,14 @@ func save_keybinds():
 func load_keybinds():
 	var defaults = get_default_keybinds()
 	keybinds = defaults.duplicate()
-	
+
 	var config = ConfigFile.new()
 	var err = config.load(CONFIG_PATH)
-	
+
 	if err != OK:
 		save_keybinds()
 		return
-		
+
 	if not config.has_section("keybinds"):
 		save_keybinds()
 		return
@@ -82,16 +82,16 @@ func load_keybinds():
 		if config.has_section_key("keybinds", action):
 			var key_string: String = config.get_value("keybinds", action)
 			var keys: Array[int] = []
-	
+
 			for key_str in key_string.split(",", false):
 				if key_str.is_valid_int():
 					keys.append(int(key_str))
-			
+
 			if not keys.is_empty():
 				keybinds[action] = keys
-				
+
 		else:
 			needs_save = true
-			
+
 	if needs_save:
 		save_keybinds()
