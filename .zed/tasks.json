@@ -1,0 +1,8 @@
+[
+  {
+    "label": "Launch Godot",
+    "command": "godot",
+    "args": ["--path", ".", "--debug"],
+    "use_new_terminal": false,
+  },
+]
