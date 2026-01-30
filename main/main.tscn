@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccm6v0lbtkr0p"]
+[gd_scene load_steps=15 format=3 uid="uid://ccm6v0lbtkr0p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyec73hvubwn" path="res://player/player.tscn" id="1_53q0u"]
 [ext_resource type="Script" uid="uid://cf47jb4ar4xaj" path="res://main/main.gd" id="1_xwkvk"]
-[ext_resource type="PackedScene" uid="uid://ui18rp0mk16a" path="res://main/test_scene.tscn" id="3_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://b6l6cs228lvbt" path="res://levels/level_0.tscn" id="3_xwkvk"]
+[ext_resource type="PackedScene" uid="uid://dyl30tnqh5j6v" path="res://levels/spawner.tscn" id="4_c651c"]
+[ext_resource type="Script" uid="uid://c7ld6gu5fi1ra" path="res://main/spawner_manager.gd" id="5_kfbq2"]
+[ext_resource type="PackedScene" uid="uid://cs1wpxls2og2b" path="res://main/path.tscn" id="6_4dugh"]
+[ext_resource type="PackedScene" uid="uid://cgyv8i8ecq0i6" path="res://weapons/pickups/pickup.tscn" id="7_bsumw"]
+[ext_resource type="PackedScene" uid="uid://c3lfum44dt2vf" path="res://weapons/weapons/M4A1.tscn" id="8_fwcvl"]
+[ext_resource type="Texture2D" uid="uid://bdrkc6m8wike2" path="res://icon.svg" id="9_na0o7"]
+[ext_resource type="PackedScene" uid="uid://cptde1sxjuv1r" path="res://weapons/weapons/MP5.tscn" id="10_73k8k"]
+[ext_resource type="PackedScene" uid="uid://bsj8r2xcyf88w" path="res://weapons/weapons/M16.tscn" id="11_5xyti"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xwkvk"]
 
@@ -27,4 +35,24 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_53q0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111600876, 0)
 
-[node name="TestScene" parent="." instance=ExtResource("3_xwkvk")]
+[node name="Level0" parent="." instance=ExtResource("3_xwkvk")]
+
+[node name="SpawnerManager" type="Node" parent="."]
+script = ExtResource("5_kfbq2")
+spawner = ExtResource("4_c651c")
+path = ExtResource("6_4dugh")
+
+[node name="Pickup" parent="." instance=ExtResource("7_bsumw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5292091, -11.717036)
+scene = ExtResource("8_fwcvl")
+texture = ExtResource("9_na0o7")
+
+[node name="Pickup2" parent="." instance=ExtResource("7_bsumw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5292091, -3.659768)
+scene = ExtResource("10_73k8k")
+texture = ExtResource("9_na0o7")
+
+[node name="Pickup3" parent="." instance=ExtResource("7_bsumw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.187716, -6.626178)
+scene = ExtResource("11_5xyti")
+texture = ExtResource("9_na0o7")

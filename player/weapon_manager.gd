@@ -16,7 +16,7 @@ var secondary_weapon: BaseWeapon
 
 func _ready() -> void:
 	connect_signals()
-	
+
 func connect_signals():
 	reset_labels.connect(canvas_layer.reset_labels)
 
@@ -71,8 +71,8 @@ func replace_weapon(weapon_index: int, scene):
 			secondary_weapon = create_weapon(scene)
 			connect_weapon(secondary_weapon)
 			current_gun_equipped = secondary_weapon
-			
+
 	current_gun_equipped.is_enabled = true
-			
+
 func remove(weapon: BaseWeapon):
 	weapon.queue_free()

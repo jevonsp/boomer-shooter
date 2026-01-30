@@ -1082,6 +1082,7 @@ size = Vector3(1.3447266, 1, 1)
 [node name="Enemy" type="CharacterBody3D"]
 collision_layer = 4
 script = ExtResource("1_fw1ev")
+speed = 2.0
 hitpoints = 25
 
 [node name="EnemyArea3D" type="Area3D" parent="." groups=["enemy"]]

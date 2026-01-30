@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1a6nk5b1l2t1"]
+
+[ext_resource type="PackedScene" uid="uid://c8ku71ht2vedc" path="res://levels/floor_tile.tscn" id="1_wxk2p"]
+
+[node name="Wall" type="Node3D"]
+
+[node name="FloorTile8" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, -27.836128)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile9" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, -19.836128)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile10" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, -11.836128)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile11" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, -3.8361263)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile12" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, 4.1638737)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile13" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, 12.163874)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile14" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, 20.163874)
+skeleton = NodePath("../../..")
+
+[node name="FloorTile15" parent="." instance=ExtResource("1_wxk2p")]
+transform = Transform3D(4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, -3.821371e-15, -8.742278e-08, -1, 0, 0, 28.163874)
+skeleton = NodePath("../../..")

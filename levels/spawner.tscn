@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyl30tnqh5j6v"]
+
+[ext_resource type="Script" uid="uid://ce4clfnpcleuc" path="res://levels/spawner.gd" id="1_fh533"]
+[ext_resource type="PackedScene" uid="uid://cw6w3voc584ml" path="res://enemies/enemy.tscn" id="2_fh533"]
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_fh533")
+monster = ExtResource("2_fh533")

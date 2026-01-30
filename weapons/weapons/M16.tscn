@@ -826,6 +826,7 @@ reload_time = 2.0
 is_automatic = true
 is_burst = true
 shot_time = 0.35
+piercing_factor = 1
 
 [node name="Model" type="Node3D" parent="."]
 transform = Transform3D(0.9988534, 0, 0.047873527, 0, 1, 0, -0.047873527, 0, 0.9988534, 0.34936035, -0.079116225, -0.0010352731)
@@ -869,7 +870,7 @@ mesh = SubResource("ArrayMesh_wfhiv")
 skeleton = NodePath("")
 
 [node name="Cube_006" type="MeshInstance3D" parent="Model/M16"]
-transform = Transform3D(100, -1.629207e-05, -7.12149e-13, 0, -4.371139e-06, 100, -1.629207e-05, -100, -4.371139e-06, 0, -2.7640676, 0)
+transform = Transform3D(100, -1.6292068e-05, -7.12149e-13, 0, -4.3711384e-06, 100, -1.629207e-05, -99.99999, -4.371139e-06, 0, -2.7640676, 0)
 mesh = SubResource("ArrayMesh_ljd7s")
 skeleton = NodePath("")
 
